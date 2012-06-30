@@ -189,7 +189,7 @@ namespace COL.MultiNGlycan
         {
             //Merged Cluster
             StreamWriter sw = new StreamWriter(argFilename);
-            sw.WriteLine("Start Time,End Time,Start Scan Num,End Scan Num,Charge,M/Z,Abuntance,MonoMass,1st,2nd,3rd,4th,5th,Composition(HexNac,Hex,deHex,Sia),Composition mono,Difference PPM");
+            sw.WriteLine("Start Time,End Time,Start Scan Num,End Scan Num,Charge,M/Z,Abuntance,MonoMass,1st,2nd,3rd,4th,5th,HexNac,Hex,deHex,Sia,Composition mono,Difference PPM");
             foreach (ClusteredPeak cls in _mergePeaks)
             {
                 if (argContainCompsitionOnly && cls.GlycanCompostion == null)
@@ -240,7 +240,7 @@ namespace COL.MultiNGlycan
             //Full Cluster
             string FullFilename = argFilename.Replace(Path.GetFileNameWithoutExtension(argFilename), Path.GetFileNameWithoutExtension(argFilename) + "_FullList");
             sw = new StreamWriter(FullFilename);
-            sw.WriteLine("Time,Scan Num,Charge,M/Z,Abuntance,MonoMass,1st,2nd,3rd,4th,5th,Composition(HexNac,Hex,deHex,Sia),Composition mono,Difference PPM");
+            sw.WriteLine("Time,Scan Num,Charge,M/Z,Abuntance,MonoMass,1st,2nd,3rd,4th,5th,HexNac,Hex,deHex,Sia,Composition mono,Difference PPM");
             foreach (ClusteredPeak cls in _cluPeaks)
             {
                 if (argContainCompsitionOnly && cls.GlycanCompostion == null)
