@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiNGlycan_COLLib", "MultiNGlycan\MultiNGlycan_COLLib.csproj", "{A73C69E3-C47C-41DE-9AFE-477A67037116}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MultiNGlycan_Setup", "MultiNGlycan_Setup\MultiNGlycan_Setup.vdproj", "{DBF0EB8F-57E5-4FF8-A2D2-2312BF368820}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,8 @@ Global
 		{A73C69E3-C47C-41DE-9AFE-477A67037116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A73C69E3-C47C-41DE-9AFE-477A67037116}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A73C69E3-C47C-41DE-9AFE-477A67037116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBF0EB8F-57E5-4FF8-A2D2-2312BF368820}.Debug|Any CPU.ActiveCfg = Debug
+		{DBF0EB8F-57E5-4FF8-A2D2-2312BF368820}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
