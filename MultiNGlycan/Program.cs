@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-
+using Microsoft.Win32;
 namespace COL.MultiNGlycan
 {
     static class Program
@@ -15,7 +14,26 @@ namespace COL.MultiNGlycan
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMainESI());
+            RegistryKey key;
+            key = Registry.ClassesRoot.OpenSubKey(@"TypeLib\");
+            bool foundXCalibur = false;
+            foreach (String keyName in key.GetSubKeyNames())
+            {
+                if (keyName == "{5FE970A2-29C3-11D3-811D-00104B304896}")
+                {
+                    foundXCalibur = true;
+                    break;
+                }    
+            }
+            if (foundXCalibur)
+            {
+                Application.Run(new frmMainESI());
+            }
+            else
+            {
+                MessageBox.Show("Please install Xcalibur");
+                return;
+            }
         }
     }
 }

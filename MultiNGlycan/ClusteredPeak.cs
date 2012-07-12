@@ -47,7 +47,7 @@ namespace COL.MultiNGlycan
         }
         public double mz
         {
-            get { return _MSPeak[0].MZ; }
+            get { return _MSPeak[0].MonoisotopicMZ; }
         }
 
         public double EndTime

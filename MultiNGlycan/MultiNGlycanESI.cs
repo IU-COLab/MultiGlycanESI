@@ -209,13 +209,13 @@ namespace COL.MultiNGlycan
                 export = export + cls.StartScan + ","
                                 + cls.EndScan +","
                                + cls.Charge + ","
-                               + cls.Peaks[0].MZ + ",";
+                               + cls.Peaks[0].MonoisotopicMZ + ",";
 
                 export = export + cls.Intensity.ToString() + ","
                                 + cls.ClusterMono.ToString() + ",";
                 for (int i = 0; i < cls.Peaks.Count; i++)
                 {
-                    export = export + cls.Peaks[i].MZ + ",";
+                    export = export + cls.Peaks[i].MonoisotopicMZ + ",";
                 }
                 for (int i = 0; i < 5 - cls.Peaks.Count-1; i++)
                 {
@@ -250,13 +250,13 @@ namespace COL.MultiNGlycan
                 string export = cls.StartTime + ","
                                 + cls.StartScan + ","
                                + cls.Charge + ","
-                               + cls.Peaks[0].MZ + ",";
+                               + cls.Peaks[0].MonoisotopicMZ + ",";
 
                 export = export + cls.Intensity.ToString() + ","
                                 + cls.ClusterMono.ToString() + ",";
                 for (int i = 0; i < cls.Peaks.Count; i++)
                 {
-                    export = export + cls.Peaks[i].MZ + ",";
+                    export = export + cls.Peaks[i].MonoisotopicMZ + ",";
                 }
                 for (int i = 0; i < 5 - cls.Peaks.Count-1; i++)
                 {
@@ -282,7 +282,7 @@ namespace COL.MultiNGlycan
         {
             List<ClusteredPeak> ClsPeaks = new List<ClusteredPeak>();
             List<MSPeak> SortedPeaks = argPeaks;
-            SortedPeaks.Sort(delegate(MSPeak P1, MSPeak P2) { return Comparer<double>.Default.Compare(P1.MZ, P2.MZ); });
+            SortedPeaks.Sort(delegate(MSPeak P1, MSPeak P2) { return Comparer<double>.Default.Compare(P1.MonoisotopicMZ, P2.MonoisotopicMZ); });
           
             for (int i = 0; i < SortedPeaks.Count; i++)
             {
@@ -295,7 +295,7 @@ namespace COL.MultiNGlycan
                 //Create cluster interval
                 double[] Step = new double[Convert.ToInt32(SortedPeaks[i].ChargeState)+1];
                 double NH3 = Nitrogen + 3 * Hydrogen;
-                Step[0] = SortedPeaks[i].MZ;
+                Step[0] = SortedPeaks[i].MonoisotopicMZ;
                 for (int j = 1; j <= SortedPeaks[i].ChargeState; j++)
                 {  
                     Step[j] = Step[j - 1] + (NH3) / SortedPeaks[i].ChargeState;     
@@ -316,7 +316,7 @@ namespace COL.MultiNGlycan
                     }
                     for (int k = CurrentMatchIdx; k < Step.Length; k++)
                     {
-                        if (GetMassPPM(Step[k], SortedPeaks[j].MZ) < _massPPM)
+                        if (GetMassPPM(Step[k], SortedPeaks[j].MonoisotopicMZ) < _massPPM)
                         {
                             PeakIdx[k] = j;
                             CurrentMatchIdx = k+1;

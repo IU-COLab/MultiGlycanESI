@@ -15,30 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_18106FAC206A41A0AA0FC1432B272192"
-        "OwnerKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1C2047A1B207F4C75337ADD55107146F"
-        "OwnerKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1C2047A1B207F4C75337ADD55107146F"
-        "OwnerKey" = "8:_8FC8B94A44608E2F8D895C40BDE41A99"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2332C594980090FE45CAD3912228A805"
-        "OwnerKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_4D1690E43EF247C5B1B25705EDB8B706"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -51,14 +27,62 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8FC8B94A44608E2F8D895C40BDE41A99"
+        "MsmKey" = "8:_69D7C7589A4A4115A649A59432A355F1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8239917CA9C04215BD62B3BCFFD485E5"
+        "OwnerKey" = "8:_EDC715E234262FC832ADEF5F19731AC4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8239917CA9C04215BD62B3BCFFD485E5"
         "OwnerKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_ECF051FCE3934DEA99012E7C9DA7C548"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_97328F3A993EBB18D11F3408C9245838"
+        "OwnerKey" = "8:_8239917CA9C04215BD62B3BCFFD485E5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_97328F3A993EBB18D11F3408C9245838"
+        "OwnerKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AACC546AA46513BCBC610C2F4F23F9A9"
+        "OwnerKey" = "8:_EDC715E234262FC832ADEF5F19731AC4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AACC546AA46513BCBC610C2F4F23F9A9"
+        "OwnerKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EDC715E234262FC832ADEF5F19731AC4"
+        "OwnerKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FC9B825C5B801FC39E3E094FFCB63D9E"
+        "OwnerKey" = "8:_EDC715E234262FC832ADEF5F19731AC4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FC9B825C5B801FC39E3E094FFCB63D9E"
+        "OwnerKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,31 +94,37 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2332C594980090FE45CAD3912228A805"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_18106FAC206A41A0AA0FC1432B272192"
+        "OwnerKey" = "8:_EDC715E234262FC832ADEF5F19731AC4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8FC8B94A44608E2F8D895C40BDE41A99"
+        "OwnerKey" = "8:_FC9B825C5B801FC39E3E094FFCB63D9E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1C2047A1B207F4C75337ADD55107146F"
+        "OwnerKey" = "8:_AACC546AA46513BCBC610C2F4F23F9A9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8239917CA9C04215BD62B3BCFFD485E5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_97328F3A993EBB18D11F3408C9245838"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -115,13 +145,21 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\MultiNGlycan_Setup.msi"
+        "OutputFilename" = "8:Release\\MultiNGlycan.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -131,6 +169,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+                    {
+                    "Name" = "8:.NET Framework 3.5"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -160,20 +219,40 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_18106FAC206A41A0AA0FC1432B272192"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4D1690E43EF247C5B1B25705EDB8B706"
+            {
+            "SourcePath" = "8:..\\..\\!IncludeFiles\\ISOTOPE.DAT"
+            "TargetName" = "8:ISOTOPE.DAT"
+            "Tag" = "8:"
+            "Folder" = "8:_82D512972A784B3EB0A48754CB3E9830"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8239917CA9C04215BD62B3BCFFD485E5"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Prot_Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:MassLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_18106FAC206A41A0AA0FC1432B272192"
+                    "_8239917CA9C04215BD62B3BCFFD485E5"
                     {
-                    "Name" = "8:Prot_Lib.dll"
+                    "Name" = "8:MassLib.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Prot_Lib.dll"
+            "SourcePath" = "8:MassLib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_82D512972A784B3EB0A48754CB3E9830"
@@ -191,14 +270,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1C2047A1B207F4C75337ADD55107146F"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_97328F3A993EBB18D11F3408C9245838"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:GlypIDEngine, Version=1.0.3736.24528, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:GlypIDEngine, Version=2.0.5.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_1C2047A1B207F4C75337ADD55107146F"
+                    "_97328F3A993EBB18D11F3408C9245838"
                     {
                     "Name" = "8:GlypIDEngine.dll"
                     "Attributes" = "3:512"
@@ -222,14 +301,45 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2332C594980090FE45CAD3912228A805"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AACC546AA46513BCBC610C2F4F23F9A9"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:ProtLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_AACC546AA46513BCBC610C2F4F23F9A9"
+                    {
+                    "Name" = "8:ProtLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:ProtLib.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_82D512972A784B3EB0A48754CB3E9830"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EDC715E234262FC832ADEF5F19731AC4"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:GlycoLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2332C594980090FE45CAD3912228A805"
+                    "_EDC715E234262FC832ADEF5F19731AC4"
                     {
                     "Name" = "8:GlycoLib.dll"
                     "Attributes" = "3:512"
@@ -253,40 +363,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4D1690E43EF247C5B1B25705EDB8B706"
-            {
-            "SourcePath" = "8:..\\..\\!IncludeFiles\\ISOTOPE.DAT"
-            "TargetName" = "8:ISOTOPE.DAT"
-            "Tag" = "8:"
-            "Folder" = "8:_82D512972A784B3EB0A48754CB3E9830"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8FC8B94A44608E2F8D895C40BDE41A99"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FC9B825C5B801FC39E3E094FFCB63D9E"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MassLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:ZedGraph, Version=5.1.4.31904, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8FC8B94A44608E2F8D895C40BDE41A99"
+                    "_FC9B825C5B801FC39E3E094FFCB63D9E"
                     {
-                    "Name" = "8:MassLib.dll"
+                    "Name" = "8:ZedGraph.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:MassLib.dll"
+            "SourcePath" = "8:ZedGraph.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_82D512972A784B3EB0A48754CB3E9830"
@@ -339,6 +429,17 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_910097501B484D8BB96958FA18DDF337"
+                    {
+                    "Name" = "8:Indiana University(COL Lab)"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_6768BCD6AE07466FAA5EE222A1403D71"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_82D512972A784B3EB0A48754CB3E9830"
@@ -379,9 +480,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:MultiNGlycan_Setup"
+        "ProductName" = "8:MultiNGlycan"
         "ProductCode" = "8:{9A5089CC-5B46-48CA-B046-FD7C5AF0393D}"
-        "PackageCode" = "8:{5801C73B-5D61-44FF-A867-F86212E5036E}"
+        "PackageCode" = "8:{949EE362-41FE-4417-B29B-2A408C14386E}"
         "UpgradeCode" = "8:{54DC6B4A-E4CF-49AB-8345-EC30C1C1C407}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
@@ -500,6 +601,34 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F163FD8E691A4F8CB9B5EB88B7B3807E"
+            {
+            "Name" = "8:MultiNGlycan"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
+            "Folder" = "8:_DE485E3498584BA7A31C74392F6F8440"
+            "WorkingFolder" = "8:_82D512972A784B3EB0A48754CB3E9830"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F79667A770C745928BB1925698549161"
+            {
+            "Name" = "8:MultiNGlycan"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
+            "Folder" = "8:_910097501B484D8BB96958FA18DDF337"
+            "WorkingFolder" = "8:_82D512972A784B3EB0A48754CB3E9830"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -896,11 +1025,11 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_ECF051FCE3934DEA99012E7C9DA7C548"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_69D7C7589A4A4115A649A59432A355F1"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:FALSE"
-            "SourcePath" = "8:C:\\Program Files (x86)\\Common Files\\Merge Modules\\Microsoft_VC90_CRT_x86_x64.msm"
+            "SourcePath" = "8:C:\\Program Files\\Common Files\\Merge Modules\\Microsoft_VC90_CRT_x86_x64.msm"
                 "Properties"
                 {
                 }
@@ -915,7 +1044,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_58C8B3F19AC34D31BAB64144298A3EC6"
             {
-            "SourcePath" = "8:..\\MultiNGlycan\\obj\\Release\\MultiNGlycan.exe"
+            "SourcePath" = "8:..\\MultiNGlycan\\obj\\x86\\Debug\\MultiNGlycan.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_82D512972A784B3EB0A48754CB3E9830"
