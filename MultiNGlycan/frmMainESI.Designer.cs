@@ -54,6 +54,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkSingleCluster = new System.Windows.Forms.CheckBox();
             this.btnSetting = new System.Windows.Forms.Button();
+            this.chkMergeDffCharge = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -146,7 +147,7 @@
             // btnMerge
             // 
             this.btnMerge.Enabled = false;
-            this.btnMerge.Location = new System.Drawing.Point(411, 164);
+            this.btnMerge.Location = new System.Drawing.Point(405, 187);
             this.btnMerge.Name = "btnMerge";
             this.btnMerge.Size = new System.Drawing.Size(75, 23);
             this.btnMerge.TabIndex = 14;
@@ -301,7 +302,7 @@
             // 
             // btnSetting
             // 
-            this.btnSetting.Location = new System.Drawing.Point(330, 163);
+            this.btnSetting.Location = new System.Drawing.Point(323, 187);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Size = new System.Drawing.Size(75, 23);
             this.btnSetting.TabIndex = 19;
@@ -309,11 +310,24 @@
             this.btnSetting.UseVisualStyleBackColor = true;
             this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
+            // chkMergeDffCharge
+            // 
+            this.chkMergeDffCharge.AutoSize = true;
+            this.chkMergeDffCharge.Checked = true;
+            this.chkMergeDffCharge.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMergeDffCharge.Location = new System.Drawing.Point(289, 164);
+            this.chkMergeDffCharge.Name = "chkMergeDffCharge";
+            this.chkMergeDffCharge.Size = new System.Drawing.Size(136, 17);
+            this.chkMergeDffCharge.TabIndex = 20;
+            this.chkMergeDffCharge.Text = "Merge Different Charge";
+            this.chkMergeDffCharge.UseVisualStyleBackColor = true;
+            // 
             // frmMainESI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 194);
+            this.ClientSize = new System.Drawing.Size(498, 217);
+            this.Controls.Add(this.chkMergeDffCharge);
             this.Controls.Add(this.btnSetting);
             this.Controls.Add(this.chkSingleCluster);
             this.Controls.Add(this.groupBox2);
@@ -364,5 +378,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox chkSingleCluster;
         private System.Windows.Forms.Button btnSetting;
+        private System.Windows.Forms.CheckBox chkMergeDffCharge;
     }
 }

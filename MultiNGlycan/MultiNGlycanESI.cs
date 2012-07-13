@@ -27,6 +27,7 @@ namespace COL.MultiNGlycan
         private bool _IncludeNonClusterGlycan;
         private GlypID.Peaks.clsPeakProcessorParameters _peakParameter;
         private GlypID.HornTransform.clsHornTransformParameters _transformParameters;
+        private bool _MergeDifferentCharge = true;
         public MultiNGlycanESI(string argRawFile,int argStartScan,int argEndScan, string argGlycanList, double argMassPPM ,double argGlycanMass,double argMergeDurationMin, bool argPermenthylated, bool argReducedReducingEnd)
         {
             _rawFile = argRawFile;
@@ -40,6 +41,11 @@ namespace COL.MultiNGlycan
             _EndScan = argEndScan;
             _MergeDurationMin = argMergeDurationMin;
             _IncludeNonClusterGlycan = true;
+        }
+        public bool MergeDifferentChargeIntoOne
+        {
+            set { _MergeDifferentCharge = value; }
+            get { return _MergeDifferentCharge; }
         }
         public bool IncludeNonClusterGlycan
         {
@@ -57,9 +63,7 @@ namespace COL.MultiNGlycan
             set { _transformParameters = value; }
         }        
         public void Process()
-        {
-
-           
+        {          
             //Read Glycan list
             ReadGlycanList();
             XRawReader rawReader = new XRawReader(_rawFile);
@@ -120,12 +124,7 @@ namespace COL.MultiNGlycan
                                 }
                             }
                         }
-                    }
-
-                    
-                    
-
-
+                    }          
                     GMSScan = null;
                 }
             }
@@ -358,7 +357,7 @@ namespace COL.MultiNGlycan
                              &&
                             ( _cluPeaks[i].GlycanCompostion == _cluPeaks[j].GlycanCompostion)
                              &&
-                             (_cluPeaks[i].Charge == _cluPeaks[j].Charge)
+                             (_cluPeaks[i].Charge == _cluPeaks[j].Charge || _MergeDifferentCharge)
                              &&
                             ((_cluPeaks[j].StartTime - _cluPeaks[i].StartTime) < argDurationMin))
                         {

@@ -66,6 +66,7 @@ namespace COL.MultiNGlycan
 
                     MultiNGlycanESI ESI = new MultiNGlycanESI(txtRawFile.Text, Convert.ToInt32(txtStartScan.Text), Convert.ToInt32(txtEndScan.Text), glycanlist, Convert.ToDouble(txtPPM.Text), Convert.ToDouble(txtGlycanPPM.Text), 5.0, chkPermethylated.Checked, chkReducedReducingEnd.Checked);
                     ESI.IncludeNonClusterGlycan = chkSingleCluster.Checked;
+                    ESI.MergeDifferentChargeIntoOne = chkMergeDffCharge.Checked;
                     ESI.PeakProcessorParameters = _peakParameter;
                     ESI.TransformParameters = _transformParameters;
                     ESI.Process();
