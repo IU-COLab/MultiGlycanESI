@@ -13,9 +13,6 @@ namespace COL.MultiNGlycan
         private string _glycanFile;
         private List<ClusteredPeak> _cluPeaks;
         private List<ClusteredPeak> _mergePeaks;
-        private double Proton =1.0073;
-        private double Hydrogen=1.00783;
-        private double Nitrogen=14.003072;
         private double _massPPM;
         private double _glycanPPM;
         private double _MergeDurationMin;
@@ -284,8 +281,7 @@ namespace COL.MultiNGlycan
             SortedPeaks.Sort(delegate(MSPeak P1, MSPeak P2) { return Comparer<double>.Default.Compare(P1.MonoisotopicMZ, P2.MonoisotopicMZ); });
           
             for (int i = 0; i < SortedPeaks.Count; i++)
-            {
-                          
+            {                          
                 /// Cluster of glycan
                 /// Z = 1 [M+H]     [M+NH4]
                 /// Z = 2 [M+2H]    [M+H+NH4]	[M+2NH4]
@@ -293,7 +289,7 @@ namespace COL.MultiNGlycan
                 /// Z = 4 [M+4H]	[M+NH4+3H]	[M+2NH4+2H]	[M+3NH4+H]	[M+4NH4]
                 //Create cluster interval
                 double[] Step = new double[Convert.ToInt32(SortedPeaks[i].ChargeState)+1];
-                double NH3 = Nitrogen + 3 * Hydrogen;
+                double NH3 = MassLib.Atoms.NitrogenMass + 3 * MassLib.Atoms.HydrogenMass;
                 Step[0] = SortedPeaks[i].MonoisotopicMZ;
                 for (int j = 1; j <= SortedPeaks[i].ChargeState; j++)
                 {  
