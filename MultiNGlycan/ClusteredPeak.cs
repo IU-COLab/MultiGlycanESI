@@ -14,15 +14,16 @@ namespace COL.MultiNGlycan
         private int _EndScan;
         private double _charge;
         private GlycanCompound _glycanComposition;
-        private double _Intensity;
+        private float  _Intensity;
+        private float _MergedIntensity;
         public ClusteredPeak(int argScanNum)
         {
             _StartScan = argScanNum;
-            _Intensity = 0.0;
+            _Intensity = 0.0f;
             _EndScan = argScanNum;
             _MSPeak = new List<MSPeak>();
         }
-        public double Intensity
+        public float Intensity
         {
             get
             {
@@ -32,6 +33,7 @@ namespace COL.MultiNGlycan
                     {
                         _Intensity = _Intensity + P.MonoIntensity;
                     }
+                    _MergedIntensity = _Intensity;
                 }
                 return _Intensity;
             }
@@ -39,6 +41,11 @@ namespace COL.MultiNGlycan
             {
                 _Intensity = value;
             }
+        }
+        public float MergedIntensity
+        {
+            get { return _MergedIntensity; }
+            set { _MergedIntensity = value; }
         }
         public double StartTime
         {

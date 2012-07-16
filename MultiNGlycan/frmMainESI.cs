@@ -13,6 +13,7 @@ namespace COL.MultiNGlycan
         GlypID.Peaks.clsPeakProcessorParameters _peakParameter;
         GlypID.HornTransform.clsHornTransformParameters _transformParameters;
         frmPeakParameters frmPeakpara;
+        private int _endScan = 0;
         public frmMainESI()
         {
             InitializeComponent();
@@ -27,6 +28,10 @@ namespace COL.MultiNGlycan
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtRawFile.Text = openFileDialog1.FileName;
+                COL.MassLib.XRawReader raw = new COL.MassLib.XRawReader(txtRawFile.Text);
+                _endScan = raw.NumberOfScans;
+                txtEndScan.Text = _endScan.ToString();
+                raw.CloseRaw();
             }
         }
 
@@ -92,24 +97,11 @@ namespace COL.MultiNGlycan
         private void rdoAllRaw_CheckedChanged(object sender, EventArgs e)
         {
             rdoScanNum.Checked = !rdoAllRaw.Checked;
-            txtStartScan.Enabled = !rdoAllRaw.Checked;
-            if (!txtStartScan.Enabled)
-            {
-                txtStartScan.Text = "1";
-            }
-            else
-            {
-                txtStartScan.Text = "";
-            }
+            txtStartScan.Enabled = !rdoAllRaw.Checked;         
             txtEndScan.Enabled = !rdoAllRaw.Checked;
-            if (!txtEndScan.Enabled)
-            {
-                txtEndScan.Text = "99999";
-            }
-            else
-            {
-                txtEndScan.Text = "";
-            }
+            txtStartScan.Text = "1";
+            txtEndScan.Text = _endScan.ToString();
+
         }
 
         private void btnSetting_Click(object sender, EventArgs e)

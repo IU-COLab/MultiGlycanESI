@@ -224,6 +224,7 @@
             // 
             // txtStartScan
             // 
+            this.txtStartScan.Enabled = false;
             this.txtStartScan.Location = new System.Drawing.Point(255, 44);
             this.txtStartScan.Name = "txtStartScan";
             this.txtStartScan.Size = new System.Drawing.Size(53, 20);
@@ -241,6 +242,7 @@
             // 
             // txtEndScan
             // 
+            this.txtEndScan.Enabled = false;
             this.txtEndScan.Location = new System.Drawing.Point(377, 45);
             this.txtEndScan.Name = "txtEndScan";
             this.txtEndScan.Size = new System.Drawing.Size(53, 20);
