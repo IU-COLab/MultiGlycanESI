@@ -46,6 +46,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.chkPeptideMinAbso = new System.Windows.Forms.CheckBox();
             this.txtPeptideMinAbso = new System.Windows.Forms.TextBox();
+            this.btnDefault = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackPeptideMinRatio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPeakBackgroundRatio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackSN)).BeginInit();
@@ -64,7 +65,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 90);
+            this.label2.Location = new System.Drawing.Point(12, 97);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 13);
             this.label2.TabIndex = 1;
@@ -73,7 +74,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 153);
+            this.label3.Location = new System.Drawing.Point(12, 165);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(145, 13);
             this.label3.TabIndex = 2;
@@ -90,7 +91,7 @@
             // 
             // trackPeptideMinRatio
             // 
-            this.trackPeptideMinRatio.Location = new System.Drawing.Point(12, 185);
+            this.trackPeptideMinRatio.Location = new System.Drawing.Point(12, 201);
             this.trackPeptideMinRatio.Maximum = 1000;
             this.trackPeptideMinRatio.Name = "trackPeptideMinRatio";
             this.trackPeptideMinRatio.Size = new System.Drawing.Size(271, 45);
@@ -101,7 +102,7 @@
             // 
             // trackPeakBackgroundRatio
             // 
-            this.trackPeakBackgroundRatio.Location = new System.Drawing.Point(12, 108);
+            this.trackPeakBackgroundRatio.Location = new System.Drawing.Point(12, 115);
             this.trackPeakBackgroundRatio.Maximum = 1000;
             this.trackPeakBackgroundRatio.Minimum = 1;
             this.trackPeakBackgroundRatio.Name = "trackPeakBackgroundRatio";
@@ -113,7 +114,7 @@
             // 
             // trackSN
             // 
-            this.trackSN.Location = new System.Drawing.Point(12, 48);
+            this.trackSN.Location = new System.Drawing.Point(12, 47);
             this.trackSN.Maximum = 100;
             this.trackSN.Name = "trackSN";
             this.trackSN.Size = new System.Drawing.Size(271, 45);
@@ -123,7 +124,7 @@
             // 
             // trackMaxCharge
             // 
-            this.trackMaxCharge.Location = new System.Drawing.Point(12, 307);
+            this.trackMaxCharge.Location = new System.Drawing.Point(12, 296);
             this.trackMaxCharge.Minimum = 1;
             this.trackMaxCharge.Name = "trackMaxCharge";
             this.trackMaxCharge.Size = new System.Drawing.Size(271, 45);
@@ -133,28 +134,28 @@
             // 
             // txtSN
             // 
-            this.txtSN.Location = new System.Drawing.Point(289, 48);
+            this.txtSN.Location = new System.Drawing.Point(289, 59);
             this.txtSN.Name = "txtSN";
             this.txtSN.Size = new System.Drawing.Size(57, 20);
             this.txtSN.TabIndex = 8;
             // 
             // txtPeakPeakBackgroundRatioRatio
             // 
-            this.txtPeakPeakBackgroundRatioRatio.Location = new System.Drawing.Point(289, 108);
+            this.txtPeakPeakBackgroundRatioRatio.Location = new System.Drawing.Point(289, 127);
             this.txtPeakPeakBackgroundRatioRatio.Name = "txtPeakPeakBackgroundRatioRatio";
             this.txtPeakPeakBackgroundRatioRatio.Size = new System.Drawing.Size(57, 20);
             this.txtPeakPeakBackgroundRatioRatio.TabIndex = 9;
             // 
             // txtPeptideMinRatio
             // 
-            this.txtPeptideMinRatio.Location = new System.Drawing.Point(289, 185);
+            this.txtPeptideMinRatio.Location = new System.Drawing.Point(289, 213);
             this.txtPeptideMinRatio.Name = "txtPeptideMinRatio";
             this.txtPeptideMinRatio.Size = new System.Drawing.Size(57, 20);
             this.txtPeptideMinRatio.TabIndex = 10;
             // 
             // txtMaxCharge
             // 
-            this.txtMaxCharge.Location = new System.Drawing.Point(289, 307);
+            this.txtMaxCharge.Location = new System.Drawing.Point(289, 296);
             this.txtMaxCharge.Name = "txtMaxCharge";
             this.txtMaxCharge.Size = new System.Drawing.Size(57, 20);
             this.txtMaxCharge.TabIndex = 11;
@@ -171,7 +172,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(200, 9);
+            this.label6.Location = new System.Drawing.Point(263, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(83, 13);
             this.label6.TabIndex = 13;
@@ -180,7 +181,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 167);
+            this.label7.Location = new System.Drawing.Point(12, 183);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(180, 13);
             this.label7.TabIndex = 14;
@@ -188,7 +189,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(291, 333);
+            this.btnOK.Location = new System.Drawing.Point(271, 341);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 15;
@@ -199,7 +200,7 @@
             // chkPeptideMinAbso
             // 
             this.chkPeptideMinAbso.AutoSize = true;
-            this.chkPeptideMinAbso.Location = new System.Drawing.Point(18, 236);
+            this.chkPeptideMinAbso.Location = new System.Drawing.Point(15, 252);
             this.chkPeptideMinAbso.Name = "chkPeptideMinAbso";
             this.chkPeptideMinAbso.Size = new System.Drawing.Size(167, 17);
             this.chkPeptideMinAbso.TabIndex = 16;
@@ -210,16 +211,27 @@
             // txtPeptideMinAbso
             // 
             this.txtPeptideMinAbso.Enabled = false;
-            this.txtPeptideMinAbso.Location = new System.Drawing.Point(246, 233);
+            this.txtPeptideMinAbso.Location = new System.Drawing.Point(246, 250);
             this.txtPeptideMinAbso.Name = "txtPeptideMinAbso";
             this.txtPeptideMinAbso.Size = new System.Drawing.Size(100, 20);
             this.txtPeptideMinAbso.TabIndex = 18;
+            // 
+            // btnDefault
+            // 
+            this.btnDefault.Location = new System.Drawing.Point(190, 341);
+            this.btnDefault.Name = "btnDefault";
+            this.btnDefault.Size = new System.Drawing.Size(75, 23);
+            this.btnDefault.TabIndex = 19;
+            this.btnDefault.Text = "Default";
+            this.btnDefault.UseVisualStyleBackColor = true;
+            this.btnDefault.Click += new System.EventHandler(this.btnDefault_Click);
             // 
             // frmPeakParameters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(378, 360);
+            this.ClientSize = new System.Drawing.Size(352, 368);
+            this.Controls.Add(this.btnDefault);
             this.Controls.Add(this.txtPeptideMinAbso);
             this.Controls.Add(this.chkPeptideMinAbso);
             this.Controls.Add(this.btnOK);
@@ -238,8 +250,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmPeakParameters";
             this.Text = "Peak Parameters";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPeakParameters_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.trackPeptideMinRatio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPeakBackgroundRatio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackSN)).EndInit();
@@ -269,5 +285,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.CheckBox chkPeptideMinAbso;
         private System.Windows.Forms.TextBox txtPeptideMinAbso;
+        private System.Windows.Forms.Button btnDefault;
     }
 }

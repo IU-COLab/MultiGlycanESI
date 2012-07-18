@@ -5,7 +5,7 @@ using COL.MassLib;
 using COL.GlycoLib;
 namespace COL.MultiNGlycan
 {
-    class ClusteredPeak
+    public class ClusteredPeak
     {
         private List<MSPeak> _MSPeak;
         private double _StatrTime;

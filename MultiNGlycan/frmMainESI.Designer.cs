@@ -55,6 +55,8 @@
             this.chkSingleCluster = new System.Windows.Forms.CheckBox();
             this.btnSetting = new System.Windows.Forms.Button();
             this.chkMergeDffCharge = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtMergeWindow = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -158,7 +160,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 141);
+            this.label1.Location = new System.Drawing.Point(32, 142);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 5;
@@ -166,7 +168,7 @@
             // 
             // txtPPM
             // 
-            this.txtPPM.Location = new System.Drawing.Point(101, 138);
+            this.txtPPM.Location = new System.Drawing.Point(112, 138);
             this.txtPPM.Name = "txtPPM";
             this.txtPPM.Size = new System.Drawing.Size(35, 20);
             this.txtPPM.TabIndex = 10;
@@ -177,7 +179,7 @@
             this.chkPermethylated.AutoSize = true;
             this.chkPermethylated.Checked = true;
             this.chkPermethylated.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPermethylated.Location = new System.Drawing.Point(142, 164);
+            this.chkPermethylated.Location = new System.Drawing.Point(355, 140);
             this.chkPermethylated.Name = "chkPermethylated";
             this.chkPermethylated.Size = new System.Drawing.Size(93, 17);
             this.chkPermethylated.TabIndex = 13;
@@ -189,7 +191,7 @@
             this.chkReducedReducingEnd.AutoSize = true;
             this.chkReducedReducingEnd.Checked = true;
             this.chkReducedReducingEnd.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReducedReducingEnd.Location = new System.Drawing.Point(142, 141);
+            this.chkReducedReducingEnd.Location = new System.Drawing.Point(162, 140);
             this.chkReducedReducingEnd.Name = "chkReducedReducingEnd";
             this.chkReducedReducingEnd.Size = new System.Drawing.Size(141, 17);
             this.chkReducedReducingEnd.TabIndex = 12;
@@ -199,7 +201,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 166);
+            this.label2.Location = new System.Drawing.Point(24, 167);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 13);
             this.label2.TabIndex = 9;
@@ -207,7 +209,7 @@
             // 
             // txtGlycanPPM
             // 
-            this.txtGlycanPPM.Location = new System.Drawing.Point(101, 165);
+            this.txtGlycanPPM.Location = new System.Drawing.Point(112, 163);
             this.txtGlycanPPM.Name = "txtGlycanPPM";
             this.txtGlycanPPM.Size = new System.Drawing.Size(35, 20);
             this.txtGlycanPPM.TabIndex = 11;
@@ -295,7 +297,7 @@
             this.chkSingleCluster.AutoSize = true;
             this.chkSingleCluster.Checked = true;
             this.chkSingleCluster.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSingleCluster.Location = new System.Drawing.Point(289, 141);
+            this.chkSingleCluster.Location = new System.Drawing.Point(162, 165);
             this.chkSingleCluster.Name = "chkSingleCluster";
             this.chkSingleCluster.Size = new System.Drawing.Size(191, 17);
             this.chkSingleCluster.TabIndex = 18;
@@ -304,7 +306,7 @@
             // 
             // btnSetting
             // 
-            this.btnSetting.Location = new System.Drawing.Point(323, 187);
+            this.btnSetting.Location = new System.Drawing.Point(324, 187);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Size = new System.Drawing.Size(75, 23);
             this.btnSetting.TabIndex = 19;
@@ -317,18 +319,37 @@
             this.chkMergeDffCharge.AutoSize = true;
             this.chkMergeDffCharge.Checked = true;
             this.chkMergeDffCharge.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkMergeDffCharge.Location = new System.Drawing.Point(289, 164);
+            this.chkMergeDffCharge.Location = new System.Drawing.Point(162, 190);
             this.chkMergeDffCharge.Name = "chkMergeDffCharge";
             this.chkMergeDffCharge.Size = new System.Drawing.Size(136, 17);
             this.chkMergeDffCharge.TabIndex = 20;
             this.chkMergeDffCharge.Text = "Merge Different Charge";
             this.chkMergeDffCharge.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 192);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(107, 13);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Merge Window(min) :";
+            // 
+            // txtMergeWindow
+            // 
+            this.txtMergeWindow.Location = new System.Drawing.Point(112, 188);
+            this.txtMergeWindow.Name = "txtMergeWindow";
+            this.txtMergeWindow.Size = new System.Drawing.Size(35, 20);
+            this.txtMergeWindow.TabIndex = 22;
+            this.txtMergeWindow.Text = "5";
+            // 
             // frmMainESI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 217);
+            this.ClientSize = new System.Drawing.Size(490, 217);
+            this.Controls.Add(this.txtMergeWindow);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.chkMergeDffCharge);
             this.Controls.Add(this.btnSetting);
             this.Controls.Add(this.chkSingleCluster);
@@ -341,8 +362,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnMerge);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMainESI";
-            this.Text = "MultiNglycan-ESI";
+            this.Text = "MultiNglycan-ESI v0.8";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -381,5 +405,7 @@
         private System.Windows.Forms.CheckBox chkSingleCluster;
         private System.Windows.Forms.Button btnSetting;
         private System.Windows.Forms.CheckBox chkMergeDffCharge;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtMergeWindow;
     }
 }

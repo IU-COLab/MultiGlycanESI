@@ -48,17 +48,16 @@ namespace COL.MultiNGlycan
         {
             saveFileDialog1.Filter = "CSV Files (*.csv)|*.csv";
             DateTime time = DateTime.Now;             // Use current time
-	        string format = "yyMMdd hhmm";            // Use this format
-	       
-            saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(txtRawFile.Text) + "-" +time.ToString(format)+".csv";
+            string TimeFormat = "yyMMdd HHmm";            // Use this format
+
+            saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(txtRawFile.Text) + "-" + time.ToString(TimeFormat) + ".csv";
             if (txtRawFile.Text == "" || (rdoUserList.Checked && txtGlycanList.Text == ""))
             {
                 MessageBox.Show("Input raw and list or selest file.");
                 return ;
             }
-            
-            
-                _peakParameter = frmPeakpara.PeakProcessorParameters;
+
+                 _peakParameter = frmPeakpara.PeakProcessorParameters;
                 _transformParameters = frmPeakpara.TransformParameters;
 
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -69,15 +68,14 @@ namespace COL.MultiNGlycan
                         glycanlist = txtGlycanList.Text;
                     }
 
-                    MultiNGlycanESI ESI = new MultiNGlycanESI(txtRawFile.Text, Convert.ToInt32(txtStartScan.Text), Convert.ToInt32(txtEndScan.Text), glycanlist, Convert.ToDouble(txtPPM.Text), Convert.ToDouble(txtGlycanPPM.Text), 5.0, chkPermethylated.Checked, chkReducedReducingEnd.Checked);
+                    MultiNGlycanESI ESI = new MultiNGlycanESI(txtRawFile.Text, Convert.ToInt32(txtStartScan.Text), Convert.ToInt32(txtEndScan.Text), glycanlist, Convert.ToDouble(txtPPM.Text), Convert.ToDouble(txtGlycanPPM.Text), Convert.ToDouble(txtMergeWindow.Text), chkPermethylated.Checked, chkReducedReducingEnd.Checked);
                     ESI.IncludeNonClusterGlycan = chkSingleCluster.Checked;
                     ESI.MergeDifferentChargeIntoOne = chkMergeDffCharge.Checked;
                     ESI.PeakProcessorParameters = _peakParameter;
                     ESI.TransformParameters = _transformParameters;
-                    ESI.Process();
-                    ESI.Export(saveFileDialog1.FileName, true);
-                    MessageBox.Show("Done");
-
+                    ESI.ExportFilePath = saveFileDialog1.FileName;
+                    frmProcessing frmProcess = new frmProcessing(ESI);
+                    frmProcess.ShowDialog();
                 }
             
         }

@@ -15,10 +15,12 @@ namespace COL.MultiNGlycan
         public frmPeakParameters()
         {
             InitializeComponent();
+
             txtSN.Text = trackSN.Value.ToString();
             txtPeakPeakBackgroundRatioRatio.Text = (trackPeakBackgroundRatio.Value / 100.0).ToString();
             txtPeptideMinRatio.Text = (trackPeptideMinRatio.Value / 100.0).ToString();
             txtMaxCharge.Text = (10 - trackMaxCharge.Value).ToString();
+
             _peakParameter = new GlypID.Peaks.clsPeakProcessorParameters();
             _transformParameters = new GlypID.HornTransform.clsHornTransformParameters();
             _peakParameter.PeakBackgroundRatio = Convert.ToDouble(txtPeakPeakBackgroundRatioRatio.Text);
@@ -71,8 +73,43 @@ namespace COL.MultiNGlycan
             txtPeptideMinAbso.Enabled = chkPeptideMinAbso.Checked;
             trackPeptideMinRatio.Enabled = !chkPeptideMinAbso.Checked;
             txtPeptideMinRatio.Enabled = !chkPeptideMinAbso.Checked;
-
-
         }
+
+        private void btnDefault_Click(object sender, EventArgs e)
+        {
+            trackSN.Value = 2;
+            txtSN.Text = "2";
+
+            trackPeakBackgroundRatio.Value = 100;
+            txtPeakPeakBackgroundRatioRatio.Text = (100/100.0).ToString();
+
+            trackPeptideMinRatio.Value = 200;
+            txtPeptideMinRatio.Text = (200/100.0).ToString();
+
+            chkPeptideMinAbso.Enabled = false;
+            txtPeptideMinAbso.Text = "";
+
+            trackMaxCharge.Value = 5;
+            txtMaxCharge.Text = "5";
+        }
+
+        private void frmPeakParameters_FormClosing(object sender, FormClosingEventArgs e)
+        {   
+                if (MessageBox.Show("Save parameters?", "Exit setting?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    _transformParameters.UseAbsolutePeptideIntensity = chkPeptideMinAbso.Checked;
+                    _transformParameters.AbsolutePeptideIntensity = 0.0;
+                    if (_transformParameters.UseAbsolutePeptideIntensity)
+                    {
+                        _transformParameters.AbsolutePeptideIntensity = Convert.ToDouble(txtPeptideMinAbso.Text);
+                    }                   
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+        }
+
+ 
     }
 }

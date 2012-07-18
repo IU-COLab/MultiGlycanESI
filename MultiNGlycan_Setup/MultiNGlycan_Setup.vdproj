@@ -15,6 +15,18 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_1AEF3D0DC1730993B977338E74374651"
+        "OwnerKey" = "8:_8239917CA9C04215BD62B3BCFFD485E5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1AEF3D0DC1730993B977338E74374651"
+        "OwnerKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4D1690E43EF247C5B1B25705EDB8B706"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -22,12 +34,6 @@
         "Entry"
         {
         "MsmKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_69D7C7589A4A4115A649A59432A355F1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -65,6 +71,12 @@
         {
         "MsmKey" = "8:_AACC546AA46513BCBC610C2F4F23F9A9"
         "OwnerKey" = "8:_58C8B3F19AC34D31BAB64144298A3EC6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C16E1313BFC9441E9DA975E05D764FE7"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -124,6 +136,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1AEF3D0DC1730993B977338E74374651"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_97328F3A993EBB18D11F3408C9245838"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -152,6 +170,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+                    {
+                    "Name" = "8:.NET Framework 3.5"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -219,6 +250,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1AEF3D0DC1730993B977338E74374651"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:TheoreticalDistributionDLL, Version=1.0.3541.22595, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_1AEF3D0DC1730993B977338E74374651"
+                    {
+                    "Name" = "8:TheoreticalDistribution.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:TheoreticalDistribution.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_82D512972A784B3EB0A48754CB3E9830"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4D1690E43EF247C5B1B25705EDB8B706"
             {
             "SourcePath" = "8:..\\..\\!IncludeFiles\\ISOTOPE.DAT"
@@ -1025,11 +1087,11 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_69D7C7589A4A4115A649A59432A355F1"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_C16E1313BFC9441E9DA975E05D764FE7"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:FALSE"
-            "SourcePath" = "8:C:\\Program Files\\Common Files\\Merge Modules\\Microsoft_VC90_CRT_x86_x64.msm"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Common Files\\Merge Modules\\Microsoft_VC90_CRT_x86_x64.msm"
                 "Properties"
                 {
                 }
