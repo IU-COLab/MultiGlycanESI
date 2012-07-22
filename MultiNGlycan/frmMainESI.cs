@@ -14,10 +14,10 @@ namespace COL.MultiNGlycan
         GlypID.HornTransform.clsHornTransformParameters _transformParameters;
         frmPeakParameters frmPeakpara;
         private int _endScan = 0;
+
         public frmMainESI()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
         }
 
 
@@ -74,7 +74,7 @@ namespace COL.MultiNGlycan
                     ESI.PeakProcessorParameters = _peakParameter;
                     ESI.TransformParameters = _transformParameters;
                     ESI.ExportFilePath = saveFileDialog1.FileName;
-                    frmProcessing frmProcess = new frmProcessing(ESI);
+                    frmProcessing frmProcess = new frmProcessing(ESI, Convert.ToSingle(txtOutputTime.Text));
                     frmProcess.ShowDialog();
                 }
             
@@ -108,6 +108,7 @@ namespace COL.MultiNGlycan
             frmPeakpara.ShowDialog();
             btnMerge.Enabled = true;
         }
+
 
  
     }

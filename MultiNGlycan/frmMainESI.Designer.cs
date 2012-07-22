@@ -57,13 +57,15 @@
             this.chkMergeDffCharge = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtMergeWindow = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtOutputTime = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBrowseRaw
             // 
-            this.btnBrowseRaw.Location = new System.Drawing.Point(447, 12);
+            this.btnBrowseRaw.Location = new System.Drawing.Point(491, 14);
             this.btnBrowseRaw.Name = "btnBrowseRaw";
             this.btnBrowseRaw.Size = new System.Drawing.Size(25, 23);
             this.btnBrowseRaw.TabIndex = 1;
@@ -84,7 +86,7 @@
             // 
             this.txtRawFile.Location = new System.Drawing.Point(65, 14);
             this.txtRawFile.Name = "txtRawFile";
-            this.txtRawFile.Size = new System.Drawing.Size(376, 20);
+            this.txtRawFile.Size = new System.Drawing.Size(420, 20);
             this.txtRawFile.TabIndex = 0;
             // 
             // openFileDialog1
@@ -99,7 +101,7 @@
             this.groupBox1.Controls.Add(this.btnBrowseGlycan);
             this.groupBox1.Location = new System.Drawing.Point(6, 89);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(480, 44);
+            this.groupBox1.Size = new System.Drawing.Size(522, 44);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Glycan List";
@@ -109,7 +111,7 @@
             this.txtGlycanList.Enabled = false;
             this.txtGlycanList.Location = new System.Drawing.Point(196, 16);
             this.txtGlycanList.Name = "txtGlycanList";
-            this.txtGlycanList.Size = new System.Drawing.Size(246, 20);
+            this.txtGlycanList.Size = new System.Drawing.Size(289, 20);
             this.txtGlycanList.TabIndex = 8;
             // 
             // rdoDefaultList
@@ -138,7 +140,7 @@
             // btnBrowseGlycan
             // 
             this.btnBrowseGlycan.Enabled = false;
-            this.btnBrowseGlycan.Location = new System.Drawing.Point(448, 14);
+            this.btnBrowseGlycan.Location = new System.Drawing.Point(491, 16);
             this.btnBrowseGlycan.Name = "btnBrowseGlycan";
             this.btnBrowseGlycan.Size = new System.Drawing.Size(25, 22);
             this.btnBrowseGlycan.TabIndex = 9;
@@ -149,7 +151,7 @@
             // btnMerge
             // 
             this.btnMerge.Enabled = false;
-            this.btnMerge.Location = new System.Drawing.Point(405, 187);
+            this.btnMerge.Location = new System.Drawing.Point(453, 190);
             this.btnMerge.Name = "btnMerge";
             this.btnMerge.Size = new System.Drawing.Size(75, 23);
             this.btnMerge.TabIndex = 14;
@@ -287,7 +289,7 @@
             this.groupBox2.Controls.Add(this.lblFile);
             this.groupBox2.Location = new System.Drawing.Point(6, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(480, 71);
+            this.groupBox2.Size = new System.Drawing.Size(522, 71);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Raw File";
@@ -306,7 +308,7 @@
             // 
             // btnSetting
             // 
-            this.btnSetting.Location = new System.Drawing.Point(324, 187);
+            this.btnSetting.Location = new System.Drawing.Point(372, 190);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Size = new System.Drawing.Size(75, 23);
             this.btnSetting.TabIndex = 19;
@@ -343,11 +345,30 @@
             this.txtMergeWindow.TabIndex = 22;
             this.txtMergeWindow.Text = "5";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(354, 167);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(132, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Output greater than (mins):";
+            // 
+            // txtOutputTime
+            // 
+            this.txtOutputTime.Location = new System.Drawing.Point(487, 163);
+            this.txtOutputTime.Name = "txtOutputTime";
+            this.txtOutputTime.Size = new System.Drawing.Size(41, 20);
+            this.txtOutputTime.TabIndex = 24;
+            this.txtOutputTime.Text = "1";
+            // 
             // frmMainESI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 217);
+            this.ClientSize = new System.Drawing.Size(531, 217);
+            this.Controls.Add(this.txtOutputTime);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtMergeWindow);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.chkMergeDffCharge);
@@ -366,7 +387,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMainESI";
-            this.Text = "MultiNglycan-ESI v0.8";
+            this.Text = "MultiNglycan-ESI v0.8.1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -407,5 +428,7 @@
         private System.Windows.Forms.CheckBox chkMergeDffCharge;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtMergeWindow;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtOutputTime;
     }
 }

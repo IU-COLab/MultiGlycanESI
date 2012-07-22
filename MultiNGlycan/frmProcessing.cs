@@ -14,7 +14,8 @@ namespace COL.MultiNGlycan
         List<int> LstScanNumber;
         private int CurrentScan=0;
         DateTime Start;
-        public frmProcessing(MultiNGlycanESI argMultiNGlycan)
+        float _GlycanDuration;
+        public frmProcessing(MultiNGlycanESI argMultiNGlycan, float argExportDuration )
         {
             InitializeComponent();
             _MultiNGlycan = argMultiNGlycan;
@@ -26,6 +27,7 @@ namespace COL.MultiNGlycan
                 LstScanNumber.Add(i);
             }
             Start = DateTime.Now;
+            _GlycanDuration = argExportDuration;
             bgWorker_Process.RunWorkerAsync();
         }
 
@@ -54,11 +56,16 @@ namespace COL.MultiNGlycan
             lblStatus.Text = "Mergeing Peaks";
             _MultiNGlycan.MergeCluster();
             lblStatus.Text = "Exporting";
-            _MultiNGlycan.Export(true);
+            _MultiNGlycan.Export(true, _GlycanDuration);
             TimeSpan TDiff = DateTime.Now.Subtract(Start);
             lblStatus.Text = "Finish in " + TDiff.TotalMinutes.ToString("0.00") + " mins";
             lblNumberOfMerge.Text = _MultiNGlycan.MergedPeak.Count.ToString();
+            progressBar1.Value = 100;
+            lblPercentage.Text =  "100%";
             FlashWindow.Flash(this);
+            this.Text = "Done";
+
+            MessageBox.Show("Done");
         }
 
         private void frmProcessing_FormClosing(object sender, FormClosingEventArgs e)

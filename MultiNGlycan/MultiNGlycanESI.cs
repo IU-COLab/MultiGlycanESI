@@ -294,7 +294,7 @@ namespace COL.MultiNGlycan
         /// 
         /// </summary>
         /// <param name="argContainCompositionOnly">Skip cluster with no composition assigned</param>
-        public void Export(bool argContainCompositionOnly)
+        public void Export(bool argContainCompositionOnly, float argGreaterMin)
         {
             //Merged Cluster
             StreamWriter sw = new StreamWriter(_ExportFilePath);
@@ -302,6 +302,10 @@ namespace COL.MultiNGlycan
             foreach (ClusteredPeak cls in _mergePeaks)
             {
                 if (argContainCompositionOnly && cls.GlycanCompostion == null)
+                {
+                    continue;
+                }
+                if (cls.EndTime - cls.StartTime < argGreaterMin)
                 {
                     continue;
                 }
@@ -420,7 +424,7 @@ namespace COL.MultiNGlycan
                             Step[j] = Step[j - 1] + (NH3) / ChargeState;
                         }
                         int[] PeakIdx = new int[Step.Length];
-                        PeakIdx[0] = i;
+                        PeakIdx[0] = ClosedPeak;
                         for (int j = 1; j < PeakIdx.Length; j++)
                         {
                             PeakIdx[j] = -1;
@@ -537,7 +541,7 @@ namespace COL.MultiNGlycan
                              &&
                              (_cluPeaks[i].Charge == _cluPeaks[j].Charge || _MergeDifferentCharge)
                              &&
-                            ((_cluPeaks[j].StartTime - _cluPeaks[i].StartTime) < argDurationMin))
+                            ((_cluPeaks[j].EndTime - _cluPeaks[i].StartTime) < argDurationMin))
                         {
                             _cluPeaks[i].EndTime = _cluPeaks[j].StartTime;
                             _cluPeaks[i].EndScan = _cluPeaks[j].StartScan;
