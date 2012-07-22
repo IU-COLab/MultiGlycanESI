@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2D12E8C4B9744A26B8617CD645C460FB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4D1690E43EF247C5B1B25705EDB8B706"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -281,6 +287,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2D12E8C4B9744A26B8617CD645C460FB"
+            {
+            "SourcePath" = "8:C:\\Windows\\System32\\msiexec.exe"
+            "TargetName" = "8:msiexec.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_373F1E27DC2642209AB3669CF1AC2BD0"
+            "Condition" = "8:‘Not Installed’"
+            "Transitive" = "11:TRUE"
+            "Vital" = "11:FALSE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:TRUE"
+            "Permanent" = "11:TRUE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4D1690E43EF247C5B1B25705EDB8B706"
             {
             "SourcePath" = "8:..\\..\\!IncludeFiles\\ISOTOPE.DAT"
@@ -482,6 +508,17 @@
         }
         "Folder"
         {
+            "{1525181F-901A-416C-8A58-119130FE478E}:_373F1E27DC2642209AB3669CF1AC2BD0"
+            {
+            "Name" = "8:#1914"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:SystemFolder"
+                "Folders"
+                {
+                }
+            }
             "{1525181F-901A-416C-8A58-119130FE478E}:_52C64CEAC63643B7833DD8FA86F0988E"
             {
             "Name" = "8:#1919"
@@ -543,18 +580,18 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MultiNGlycan"
-        "ProductCode" = "8:{9A5089CC-5B46-48CA-B046-FD7C5AF0393D}"
-        "PackageCode" = "8:{99395051-14EC-4F3E-959E-496412A5959B}"
+        "ProductCode" = "8:{8295CEFB-E264-4E05-A371-28130172C370}"
+        "PackageCode" = "8:{4BCE5B11-B352-48B3-BA8A-2FB085C337BC}"
         "UpgradeCode" = "8:{54DC6B4A-E4CF-49AB-8345-EC30C1C1C407}"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:0.8.1"
         "Manufacturer" = "8:Indiana University"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:MultiNGlycan_Setup"
+        "Title" = "8:MultiNGlycan 0.8.1 Setup"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Indiana University"
         "Keywords" = "8:"
@@ -663,6 +700,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A0BB5CC4E9904FD4A0511151494E73CF"
+            {
+            "Name" = "8:Uninstall MultiNGlycan"
+            "Arguments" = "8:/x {8295CEFB-E264-4E05-A371-28130172C370}"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_2D12E8C4B9744A26B8617CD645C460FB"
+            "Folder" = "8:_910097501B484D8BB96958FA18DDF337"
+            "WorkingFolder" = "8:_373F1E27DC2642209AB3669CF1AC2BD0"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F163FD8E691A4F8CB9B5EB88B7B3807E"
             {
             "Name" = "8:MultiNGlycan"
