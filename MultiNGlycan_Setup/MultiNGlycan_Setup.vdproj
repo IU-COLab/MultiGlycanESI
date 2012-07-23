@@ -112,12 +112,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_97328F3A993EBB18D11F3408C9245838"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_769A8665655F4E17A57A088A1A61AD94"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -149,6 +143,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1AEF3D0DC1730993B977338E74374651"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_97328F3A993EBB18D11F3408C9245838"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -580,18 +580,18 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MultiNGlycan"
-        "ProductCode" = "8:{8295CEFB-E264-4E05-A371-28130172C370}"
-        "PackageCode" = "8:{4BCE5B11-B352-48B3-BA8A-2FB085C337BC}"
+        "ProductCode" = "8:{CFEA0887-780A-4F57-868B-B1A2073491DB}"
+        "PackageCode" = "8:{47891D1B-8EB5-42D9-BCA4-AD8470484901}"
         "UpgradeCode" = "8:{54DC6B4A-E4CF-49AB-8345-EC30C1C1C407}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.8.1"
+        "ProductVersion" = "8:0.8.2"
         "Manufacturer" = "8:Indiana University"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:MultiNGlycan 0.8.1 Setup"
+        "Title" = "8:MultiNGlycan 0.8.2 Setup"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Indiana University"
         "Keywords" = "8:"
@@ -703,7 +703,7 @@
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A0BB5CC4E9904FD4A0511151494E73CF"
             {
             "Name" = "8:Uninstall MultiNGlycan"
-            "Arguments" = "8:/x {8295CEFB-E264-4E05-A371-28130172C370}"
+            "Arguments" = "8:/x {CFEA0887-780A-4F57-868B-B1A2073491DB}"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"

@@ -294,7 +294,7 @@ namespace COL.MultiNGlycan
         /// 
         /// </summary>
         /// <param name="argContainCompositionOnly">Skip cluster with no composition assigned</param>
-        public void Export(bool argContainCompositionOnly, float argGreaterMin)
+        public void Export(bool argContainCompositionOnly, int argGlycanScanFilter)
         {
             //Merged Cluster
             StreamWriter sw = new StreamWriter(_ExportFilePath);
@@ -305,7 +305,7 @@ namespace COL.MultiNGlycan
                 {
                     continue;
                 }
-                if (cls.EndTime - cls.StartTime < argGreaterMin)
+                if (cls.EndScan - cls.StartScan < argGlycanScanFilter)
                 {
                     continue;
                 }

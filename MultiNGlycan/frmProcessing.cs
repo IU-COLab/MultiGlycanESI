@@ -14,8 +14,8 @@ namespace COL.MultiNGlycan
         List<int> LstScanNumber;
         private int CurrentScan=0;
         DateTime Start;
-        float _GlycanDuration;
-        public frmProcessing(MultiNGlycanESI argMultiNGlycan, float argExportDuration )
+        int _GlycanScanFilter;
+        public frmProcessing(MultiNGlycanESI argMultiNGlycan, int argExportScanFilter )
         {
             InitializeComponent();
             _MultiNGlycan = argMultiNGlycan;
@@ -27,7 +27,7 @@ namespace COL.MultiNGlycan
                 LstScanNumber.Add(i);
             }
             Start = DateTime.Now;
-            _GlycanDuration = argExportDuration;
+            _GlycanScanFilter = argExportScanFilter;
             bgWorker_Process.RunWorkerAsync();
         }
 
@@ -56,7 +56,7 @@ namespace COL.MultiNGlycan
             lblStatus.Text = "Mergeing Peaks";
             _MultiNGlycan.MergeCluster();
             lblStatus.Text = "Exporting";
-            _MultiNGlycan.Export(true, _GlycanDuration);
+            _MultiNGlycan.Export(true, _GlycanScanFilter);
             TimeSpan TDiff = DateTime.Now.Subtract(Start);
             lblStatus.Text = "Finish in " + TDiff.TotalMinutes.ToString("0.00") + " mins";
             lblNumberOfMerge.Text = _MultiNGlycan.MergedPeak.Count.ToString();

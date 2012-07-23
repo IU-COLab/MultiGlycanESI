@@ -74,7 +74,7 @@ namespace COL.MultiNGlycan
                     ESI.PeakProcessorParameters = _peakParameter;
                     ESI.TransformParameters = _transformParameters;
                     ESI.ExportFilePath = saveFileDialog1.FileName;
-                    frmProcessing frmProcess = new frmProcessing(ESI, Convert.ToSingle(txtOutputTime.Text));
+                    frmProcessing frmProcess = new frmProcessing(ESI, Convert.ToInt32(txtOutputScanFilter.Text));
                     frmProcess.ShowDialog();
                 }
             
@@ -108,6 +108,8 @@ namespace COL.MultiNGlycan
             frmPeakpara.ShowDialog();
             btnMerge.Enabled = true;
         }
+
+
 
 
  
