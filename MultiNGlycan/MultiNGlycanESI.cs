@@ -27,9 +27,9 @@ namespace COL.MultiNGlycan
         private GlypID.HornTransform.clsHornTransformParameters _transformParameters;
         private bool _MergeDifferentCharge = true;
         private int _MaxCharge = 5;
-        private bool _FindClusterUseList = true;
+        private bool _FindClusterUseList = true; 
         private string _ExportFilePath;
-
+        XRawReader rawReader;
         public MultiNGlycanESI(string argRawFile,int argStartScan,int argEndScan, string argGlycanList, double argMassPPM ,double argGlycanMass,double argMergeDurationMin, bool argPermenthylated, bool argReducedReducingEnd)
         {
             _rawFile = argRawFile;
@@ -45,7 +45,9 @@ namespace COL.MultiNGlycan
             _IncludeNonClusterGlycan = true;
             //Read Glycan list           
             ReadGlycanList();
+            rawReader = new XRawReader(_rawFile);
         }
+
         public List<ClusteredPeak> ClustedPeak
         {
             get { return _cluPeaks; }
@@ -93,7 +95,7 @@ namespace COL.MultiNGlycan
         }
         public void ProcessSingleScan(int argScanNo)
         {
-            XRawReader rawReader = new XRawReader(_rawFile);
+             
             rawReader.PeakProcessorParameter = _peakParameter;
             rawReader.TransformParameter = _transformParameters;
 
@@ -154,7 +156,7 @@ namespace COL.MultiNGlycan
                 }
                 GMSScan = null;
             }
-            rawReader.CloseRaw();
+            
         }
         public void Process()
         {          
@@ -233,6 +235,7 @@ namespace COL.MultiNGlycan
                     GMSScan = null;
                 }
             }
+            rawReader.Close();
             //Merge Cluster
             MergeCluster();
         }
@@ -408,7 +411,7 @@ namespace COL.MultiNGlycan
                 for (int i = 1; i <= _MaxCharge; i++)
                 {
                     int ClosedPeak = MassLib.MassUtility.GetClosestMassIdx(PeakMZ, GlycanMZ[i]);
-                    int ChargeState = SortedPeaks[ClosedPeak].ChargeState;
+                    int ChargeState = Convert.ToInt32(SortedPeaks[ClosedPeak].ChargeState);
                     if (ChargeState==0 ||  ChargeState!=i||
                         GetMassPPM(SortedPeaks[ClosedPeak].MonoisotopicMZ,GlycanMZ[i])> _glycanPPM )
                     {
@@ -432,7 +435,7 @@ namespace COL.MultiNGlycan
                         int MatchCount = 1;
                         for (int j = 1; j < PeakIdx.Length; j++)
                         {
-                            int ClosedPeak2 = MassLib.MassUtility.GetClosestMassIdx(PeakMZ, Step[j]);
+                            int ClosedPeak2 = Convert.ToInt32(MassLib.MassUtility.GetClosestMassIdx(PeakMZ, Step[j]));
                             if (GetMassPPM(PeakMZ[ClosedPeak2], Step[j]) < _massPPM)
                             {
                                 PeakIdx[j] = ClosedPeak2;
