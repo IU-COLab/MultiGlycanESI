@@ -17,7 +17,13 @@ namespace COL.MultiNGlycan
 
         public frmMainESI()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            //int MaxCPU = Environment.ProcessorCount;
+            //for (int i = 1; i <= MaxCPU; i++)
+            //{
+            //    cboCPU.Items.Add(i); 
+            //}
+            //cboCPU.SelectedIndex = (int)Math.Floor(cboCPU.Items.Count / 2.0f)-1;
         }
 
 
@@ -31,7 +37,6 @@ namespace COL.MultiNGlycan
                 COL.MassLib.XRawReader raw = new COL.MassLib.XRawReader(txtRawFile.Text);
                 _endScan = raw.NumberOfScans;
                 txtEndScan.Text = _endScan.ToString();
-                raw.CloseRaw();
             }
         }
 
@@ -46,6 +51,15 @@ namespace COL.MultiNGlycan
 
         private void btnMerge_Click(object sender, EventArgs e)
         {
+            //FileInfo rawInfo = new FileInfo(txtRawFile.Text);
+            //DriveInfo dInfo = new DriveInfo(Directory.GetDirectoryRoot(txtRawFile.Text));
+            //if (dInfo.TotalFreeSpace <= rawInfo.Length * (int)cboCPU.SelectedItem)
+            //{
+            //    MessageBox.Show("Not enough free space to duplicate Raw file.");
+            //    return;
+            //}
+
+
             saveFileDialog1.Filter = "CSV Files (*.csv)|*.csv";
             DateTime time = DateTime.Now;             // Use current time
             string TimeFormat = "yyMMdd HHmm";            // Use this format
@@ -67,6 +81,8 @@ namespace COL.MultiNGlycan
                     {
                         glycanlist = txtGlycanList.Text;
                     }
+
+                   // MultiNGlycanESIMultiThreads MultiESIs = new MultiNGlycanESIMultiThreads(glycanlist, txtRawFile.Text, Convert.ToInt32(cboCPU.SelectedItem), _peakParameter, _transformParameters);
 
                     MultiNGlycanESI ESI = new MultiNGlycanESI(txtRawFile.Text, Convert.ToInt32(txtStartScan.Text), Convert.ToInt32(txtEndScan.Text), glycanlist, Convert.ToDouble(txtPPM.Text), Convert.ToDouble(txtGlycanPPM.Text), Convert.ToDouble(txtMergeWindow.Text), chkPermethylated.Checked, chkReducedReducingEnd.Checked);
                     ESI.IncludeNonClusterGlycan = chkSingleCluster.Checked;
@@ -107,6 +123,12 @@ namespace COL.MultiNGlycan
             frmPeakpara = new frmPeakParameters();
             frmPeakpara.ShowDialog();
             btnMerge.Enabled = true;
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            frmView frView = new frmView();
+            frView.ShowDialog();
         }
 
 

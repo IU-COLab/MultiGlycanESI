@@ -59,6 +59,9 @@
             this.txtMergeWindow = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtOutputScanFilter = new System.Windows.Forms.TextBox();
+            this.cboCPU = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnView = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +74,6 @@
             this.btnBrowseRaw.TabIndex = 1;
             this.btnBrowseRaw.Text = "...";
             this.btnBrowseRaw.UseVisualStyleBackColor = true;
-            this.btnBrowseRaw.UseWaitCursor = true;
             this.btnBrowseRaw.Click += new System.EventHandler(this.btnBrowseRaw_Click);
             // 
             // lblFile
@@ -82,7 +84,6 @@
             this.lblFile.Size = new System.Drawing.Size(51, 13);
             this.lblFile.TabIndex = 1;
             this.lblFile.Text = "Raw File:";
-            this.lblFile.UseWaitCursor = true;
             // 
             // txtRawFile
             // 
@@ -90,7 +91,6 @@
             this.txtRawFile.Name = "txtRawFile";
             this.txtRawFile.Size = new System.Drawing.Size(420, 20);
             this.txtRawFile.TabIndex = 0;
-            this.txtRawFile.UseWaitCursor = true;
             // 
             // openFileDialog1
             // 
@@ -108,7 +108,6 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Glycan List";
-            this.groupBox1.UseWaitCursor = true;
             // 
             // txtGlycanList
             // 
@@ -117,7 +116,6 @@
             this.txtGlycanList.Name = "txtGlycanList";
             this.txtGlycanList.Size = new System.Drawing.Size(289, 20);
             this.txtGlycanList.TabIndex = 8;
-            this.txtGlycanList.UseWaitCursor = true;
             // 
             // rdoDefaultList
             // 
@@ -130,7 +128,6 @@
             this.rdoDefaultList.TabStop = true;
             this.rdoDefaultList.Text = "Default List";
             this.rdoDefaultList.UseVisualStyleBackColor = true;
-            this.rdoDefaultList.UseWaitCursor = true;
             this.rdoDefaultList.CheckedChanged += new System.EventHandler(this.rdoDefaultList_CheckedChanged);
             // 
             // rdoUserList
@@ -142,7 +139,6 @@
             this.rdoUserList.TabIndex = 7;
             this.rdoUserList.Text = "Glycan List File:";
             this.rdoUserList.UseVisualStyleBackColor = true;
-            this.rdoUserList.UseWaitCursor = true;
             // 
             // btnBrowseGlycan
             // 
@@ -153,19 +149,17 @@
             this.btnBrowseGlycan.TabIndex = 9;
             this.btnBrowseGlycan.Text = "...";
             this.btnBrowseGlycan.UseVisualStyleBackColor = true;
-            this.btnBrowseGlycan.UseWaitCursor = true;
             this.btnBrowseGlycan.Click += new System.EventHandler(this.btnBrowseGlycan_Click);
             // 
             // btnMerge
             // 
             this.btnMerge.Enabled = false;
-            this.btnMerge.Location = new System.Drawing.Point(453, 190);
+            this.btnMerge.Location = new System.Drawing.Point(433, 192);
             this.btnMerge.Name = "btnMerge";
-            this.btnMerge.Size = new System.Drawing.Size(75, 23);
+            this.btnMerge.Size = new System.Drawing.Size(53, 23);
             this.btnMerge.TabIndex = 14;
             this.btnMerge.Text = "Merge";
             this.btnMerge.UseVisualStyleBackColor = true;
-            this.btnMerge.UseWaitCursor = true;
             this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
             // 
             // label1
@@ -176,7 +170,6 @@
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Mass tol(PPM):";
-            this.label1.UseWaitCursor = true;
             // 
             // txtPPM
             // 
@@ -185,20 +178,17 @@
             this.txtPPM.Size = new System.Drawing.Size(35, 20);
             this.txtPPM.TabIndex = 10;
             this.txtPPM.Text = "5";
-            this.txtPPM.UseWaitCursor = true;
             // 
             // chkPermethylated
             // 
             this.chkPermethylated.AutoSize = true;
             this.chkPermethylated.Checked = true;
             this.chkPermethylated.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPermethylated.Location = new System.Drawing.Point(355, 140);
+            this.chkPermethylated.Location = new System.Drawing.Point(162, 194);
             this.chkPermethylated.Name = "chkPermethylated";
             this.chkPermethylated.Size = new System.Drawing.Size(93, 17);
             this.chkPermethylated.TabIndex = 13;
             this.chkPermethylated.Text = "Permethylated";
-            this.chkPermethylated.UseVisualStyleBackColor = true;
-            this.chkPermethylated.UseWaitCursor = true;
             // 
             // chkReducedReducingEnd
             // 
@@ -211,7 +201,6 @@
             this.chkReducedReducingEnd.TabIndex = 12;
             this.chkReducedReducingEnd.Text = "Reduced Reducing End";
             this.chkReducedReducingEnd.UseVisualStyleBackColor = true;
-            this.chkReducedReducingEnd.UseWaitCursor = true;
             // 
             // label2
             // 
@@ -221,7 +210,6 @@
             this.label2.Size = new System.Drawing.Size(86, 13);
             this.label2.TabIndex = 9;
             this.label2.Text = "Glycan tol(PPM):";
-            this.label2.UseWaitCursor = true;
             // 
             // txtGlycanPPM
             // 
@@ -230,7 +218,6 @@
             this.txtGlycanPPM.Size = new System.Drawing.Size(35, 20);
             this.txtGlycanPPM.TabIndex = 11;
             this.txtGlycanPPM.Text = "10";
-            this.txtGlycanPPM.UseWaitCursor = true;
             // 
             // label3
             // 
@@ -240,7 +227,6 @@
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 11;
             this.label3.Text = "Start Scan:";
-            this.label3.UseWaitCursor = true;
             // 
             // txtStartScan
             // 
@@ -250,7 +236,6 @@
             this.txtStartScan.Size = new System.Drawing.Size(53, 20);
             this.txtStartScan.TabIndex = 4;
             this.txtStartScan.Text = "1";
-            this.txtStartScan.UseWaitCursor = true;
             // 
             // label4
             // 
@@ -260,7 +245,6 @@
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 13;
             this.label4.Text = "End Scan:";
-            this.label4.UseWaitCursor = true;
             // 
             // txtEndScan
             // 
@@ -270,7 +254,6 @@
             this.txtEndScan.Size = new System.Drawing.Size(53, 20);
             this.txtEndScan.TabIndex = 5;
             this.txtEndScan.Text = "99999";
-            this.txtEndScan.UseWaitCursor = true;
             // 
             // rdoAllRaw
             // 
@@ -283,7 +266,6 @@
             this.rdoAllRaw.TabStop = true;
             this.rdoAllRaw.Text = "All MS Scan";
             this.rdoAllRaw.UseVisualStyleBackColor = true;
-            this.rdoAllRaw.UseWaitCursor = true;
             this.rdoAllRaw.CheckedChanged += new System.EventHandler(this.rdoAllRaw_CheckedChanged);
             // 
             // rdoScanNum
@@ -295,7 +277,6 @@
             this.rdoScanNum.TabIndex = 3;
             this.rdoScanNum.Text = "Scan Range";
             this.rdoScanNum.UseVisualStyleBackColor = true;
-            this.rdoScanNum.UseWaitCursor = true;
             // 
             // groupBox2
             // 
@@ -314,30 +295,27 @@
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Raw File";
-            this.groupBox2.UseWaitCursor = true;
             // 
             // chkSingleCluster
             // 
             this.chkSingleCluster.AutoSize = true;
             this.chkSingleCluster.Checked = true;
             this.chkSingleCluster.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSingleCluster.Location = new System.Drawing.Point(162, 165);
+            this.chkSingleCluster.Location = new System.Drawing.Point(162, 158);
             this.chkSingleCluster.Name = "chkSingleCluster";
             this.chkSingleCluster.Size = new System.Drawing.Size(191, 17);
             this.chkSingleCluster.TabIndex = 18;
             this.chkSingleCluster.Text = "Include non-modified glycans(NH4)";
             this.chkSingleCluster.UseVisualStyleBackColor = true;
-            this.chkSingleCluster.UseWaitCursor = true;
             // 
             // btnSetting
             // 
-            this.btnSetting.Location = new System.Drawing.Point(372, 190);
+            this.btnSetting.Location = new System.Drawing.Point(375, 192);
             this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(75, 23);
+            this.btnSetting.Size = new System.Drawing.Size(54, 23);
             this.btnSetting.TabIndex = 19;
             this.btnSetting.Text = "Setting";
             this.btnSetting.UseVisualStyleBackColor = true;
-            this.btnSetting.UseWaitCursor = true;
             this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
             // chkMergeDffCharge
@@ -345,13 +323,12 @@
             this.chkMergeDffCharge.AutoSize = true;
             this.chkMergeDffCharge.Checked = true;
             this.chkMergeDffCharge.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkMergeDffCharge.Location = new System.Drawing.Point(162, 190);
+            this.chkMergeDffCharge.Location = new System.Drawing.Point(162, 176);
             this.chkMergeDffCharge.Name = "chkMergeDffCharge";
             this.chkMergeDffCharge.Size = new System.Drawing.Size(136, 17);
             this.chkMergeDffCharge.TabIndex = 20;
             this.chkMergeDffCharge.Text = "Merge Different Charge";
             this.chkMergeDffCharge.UseVisualStyleBackColor = true;
-            this.chkMergeDffCharge.UseWaitCursor = true;
             // 
             // label5
             // 
@@ -361,7 +338,6 @@
             this.label5.Size = new System.Drawing.Size(107, 13);
             this.label5.TabIndex = 21;
             this.label5.Text = "Merge Window(min) :";
-            this.label5.UseWaitCursor = true;
             // 
             // txtMergeWindow
             // 
@@ -370,32 +346,61 @@
             this.txtMergeWindow.Size = new System.Drawing.Size(35, 20);
             this.txtMergeWindow.TabIndex = 22;
             this.txtMergeWindow.Text = "5";
-            this.txtMergeWindow.UseWaitCursor = true;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(354, 167);
+            this.label6.Location = new System.Drawing.Point(352, 141);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(139, 13);
             this.label6.TabIndex = 23;
             this.label6.Text = "Output greater than (scans):";
-            this.label6.UseWaitCursor = true;
             // 
             // txtOutputScanFilter
             // 
-            this.txtOutputScanFilter.Location = new System.Drawing.Point(487, 163);
+            this.txtOutputScanFilter.Location = new System.Drawing.Point(494, 137);
             this.txtOutputScanFilter.Name = "txtOutputScanFilter";
-            this.txtOutputScanFilter.Size = new System.Drawing.Size(41, 20);
+            this.txtOutputScanFilter.Size = new System.Drawing.Size(30, 20);
             this.txtOutputScanFilter.TabIndex = 24;
             this.txtOutputScanFilter.Text = "2";
-            this.txtOutputScanFilter.UseWaitCursor = true;
+            // 
+            // cboCPU
+            // 
+            this.cboCPU.FormattingEnabled = true;
+            this.cboCPU.Location = new System.Drawing.Point(494, 159);
+            this.cboCPU.Name = "cboCPU";
+            this.cboCPU.Size = new System.Drawing.Size(30, 21);
+            this.cboCPU.TabIndex = 25;
+            this.cboCPU.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(403, 162);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(88, 13);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "No. of processor:";
+            this.label7.Visible = false;
+            // 
+            // btnView
+            // 
+            this.btnView.Location = new System.Drawing.Point(490, 192);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(40, 23);
+            this.btnView.TabIndex = 27;
+            this.btnView.Text = "View";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // frmMainESI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(531, 217);
+            this.Controls.Add(this.btnView);
+            this.Controls.Add(this.cboCPU);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtOutputScanFilter);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtMergeWindow);
@@ -412,12 +417,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnMerge);
             this.Controls.Add(this.groupBox1);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMainESI";
-            this.Text = "MultiNglycan-ESI v0.8.2";
-            this.UseWaitCursor = true;
+            this.Text = "MultiNglycan-ESI v0.8.3.1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -460,5 +465,8 @@
         private System.Windows.Forms.TextBox txtMergeWindow;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtOutputScanFilter;
+        private System.Windows.Forms.ComboBox cboCPU;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnView;
     }
 }

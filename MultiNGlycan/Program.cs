@@ -28,6 +28,7 @@ namespace COL.MultiNGlycan
             if (foundXCalibur)
             {
                 Application.Run(new frmMainESI());
+                //Application.Run(new frmMultiThreads());
             }
             else
             {

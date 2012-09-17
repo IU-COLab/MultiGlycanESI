@@ -5,11 +5,13 @@ using System.Text;
 using System.IO;
 using COL.GlycoLib;
 using COL.MassLib;
+using System.Threading;
 namespace COL.MultiNGlycan
 {
+   
     public class MultiNGlycanESI
     {
-        
+        private ManualResetEvent _doneEvent;
         private string _rawFile;
         private string _glycanFile;
         private List<ClusteredPeak> _cluPeaks;
@@ -30,6 +32,7 @@ namespace COL.MultiNGlycan
         private bool _FindClusterUseList = true; 
         private string _ExportFilePath;
         XRawReader rawReader;
+        List<int> MSScanList;
         public MultiNGlycanESI(string argRawFile,int argStartScan,int argEndScan, string argGlycanList, double argMassPPM ,double argGlycanMass,double argMergeDurationMin, bool argPermenthylated, bool argReducedReducingEnd)
         {
             _rawFile = argRawFile;
@@ -47,7 +50,20 @@ namespace COL.MultiNGlycan
             ReadGlycanList();
             rawReader = new XRawReader(_rawFile);
         }
-
+        public MultiNGlycanESI(XRawReader argRaw, List<int> argMSScanList, List<GlycoLib.GlycanCompound> argGlycanCompound, double argMassPPM, double argGlycanMass, double argMergeDurationMin, bool argPermenthylated, bool argReducedReducingEnd, ManualResetEvent doneEvent)
+        {
+            rawReader = argRaw;
+            _GlycanList = argGlycanCompound;
+            MSScanList = argMSScanList;
+            _cluPeaks = new List<ClusteredPeak>();
+            _massPPM = argMassPPM;
+            _isPermethylated = argPermenthylated;
+            _isReducedReducingEnd = argReducedReducingEnd;
+            _glycanPPM = argGlycanMass;
+            _MergeDurationMin = argMergeDurationMin;
+            _IncludeNonClusterGlycan = true;
+            _doneEvent = doneEvent;
+        }
         public List<ClusteredPeak> ClustedPeak
         {
             get { return _cluPeaks; }
@@ -103,7 +119,20 @@ namespace COL.MultiNGlycan
             {
                 MSScan GMSScan = rawReader.ReadScan(argScanNo);
                 List<MSPeak> deIsotopedPeaks = GMSScan.MSPeaks;
-
+                List<float> mzList = new List<float>();
+                foreach (MSPeak Peak in GMSScan.MSPeaks)
+                {
+                    mzList.Add(Peak.MonoisotopicMZ);
+                }
+                mzList.Sort();
+                foreach (float f in mzList)
+                {
+                    if (f >= 1100.0f && f <= 1116.0f)
+                    {
+                        Console.WriteLine(argScanNo.ToString() + "-"+f.ToString());
+                    }
+                }
+                
                 List<ClusteredPeak> Cluster;
                 if (_FindClusterUseList)
                 {
@@ -157,87 +186,27 @@ namespace COL.MultiNGlycan
                 GMSScan = null;
             }
             
-        }
-        public void Process()
-        {          
-           
-            XRawReader rawReader = new XRawReader(_rawFile);
+        }        
+        public void Process(Object threadContext)
+        {   
             rawReader.PeakProcessorParameter = _peakParameter;
             rawReader.TransformParameter = _transformParameters;
-            
-            for (int i = _StartScan; i <= _EndScan; i++)
+            if (MSScanList == null)
             {
-                if (rawReader.GetMsLevel(i) == 1)
+                MSScanList = new List<int>();
+                for (int i = _StartScan; i <= _EndScan; i++)
                 {
-                    MSScan GMSScan = rawReader.ReadScan(i);
-                    List<MSPeak> deIsotopedPeaks = GMSScan.MSPeaks;
-                    //int closedIdx =0;
-                    //float distance = 9999f;
-                    //for (int j = 0; j < deIsotopedPeaks.Count; j++)
-                    //{
-                    //    if (Math.Abs(deIsotopedPeaks[j].mz - findmz) < distance)
-                    //    {
-                    //        closedIdx = j;
-                    //        distance = (float)Math.Abs(deIsotopedPeaks[j].mz - findmz);
-                    //    }
-                    //}
-                    //double closemz = deIsotopedPeaks[closedIdx].mz;
-
-                    List<ClusteredPeak> Cluster;
-                    if (_FindClusterUseList)
+                    if (rawReader.GetMsLevel(i) == 1)
                     {
-                        Cluster = FindClusterWGlycanList(deIsotopedPeaks, i, GMSScan.Time);
+                        MSScanList.Add(i);
                     }
-                    else
-                    {
-                        Cluster = FindClusterWOGlycanList (deIsotopedPeaks, i, GMSScan.Time);
-                        List<MSPeak> UsedPeakList = new List<MSPeak>();
-
-                        //ConvertGlycanListMz into MSPoint
-                        List<MSPoint> MSPs = new List<MSPoint>();
-                        foreach (GlycanCompound comp in _GlycanList)
-                        {
-                            MSPs.Add(new MSPoint(Convert.ToSingle(comp.MonoMass),0.0f));
-                        }
-                        //Find Composition for each Cluster
-                        foreach (ClusteredPeak cls in Cluster)
-                        {
-                            int Idx = MassLib.MassUtility.GetClosestMassIdx(MSPs, Convert.ToSingle(cls.ClusterMono));
-                            if (GetMassPPM(_GlycanList[Idx].MonoMass, cls.ClusterMono) < _glycanPPM)
-                            {
-                                cls.GlycanCompostion = _GlycanList[Idx];
-                            }
-                            UsedPeakList.AddRange(cls.Peaks);
-                            _cluPeaks.Add(cls);
-                        }
-                        //Find Composition for single peak
-                        if (_IncludeNonClusterGlycan)
-                        {
-                            foreach (MSPeak peak in deIsotopedPeaks)
-                            {
-                                if (!UsedPeakList.Contains(peak))
-                                {
-                                    int Idx =  MassLib.MassUtility.GetClosestMassIdx(MSPs,peak.MonoMass); 
-                                    if (GetMassPPM(_GlycanList[Idx].MonoMass, peak.MonoMass) < _glycanPPM)
-                                    {
-                                        ClusteredPeak cls = new ClusteredPeak(i);
-                                        cls.StartTime = GMSScan.Time;
-                                        cls.Charge = peak.ChargeState;
-                                        cls.Peaks.Add(peak);
-                                        cls.GlycanCompostion = _GlycanList[Idx];
-                                        _cluPeaks.Add(cls);
-                                        UsedPeakList.Add(peak);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    GMSScan = null;
                 }
             }
-            rawReader.Close();
-            //Merge Cluster
-            MergeCluster();
+            foreach(int ScanNo in MSScanList) // (int i = _StartScan; i <= _EndScan; i++)
+            {
+                ProcessSingleScan(ScanNo);
+            }
+            _doneEvent.Set();
         }
         public void MergeCluster()
         {
@@ -339,7 +308,7 @@ namespace COL.MultiNGlycan
                             
                 if (cls.GlycanCompostion != null)
                 {
-                    string Composition = cls.GlycanCompostion.NoOfHexNAc + " ," + cls.GlycanCompostion.NoOfHex + "," + cls.GlycanCompostion.NoOfDeHex + "," + cls.GlycanCompostion.NoOfSia;
+                    string Composition = cls.GlycanCompostion.NoOfHexNAc + "," + cls.GlycanCompostion.NoOfHex + "," + cls.GlycanCompostion.NoOfDeHex + "," + cls.GlycanCompostion.NoOfSia;
                     export = export + "," + Composition + "," + cls.GlycanCompostion.MonoMass ;
                 }
                 else

@@ -59,12 +59,16 @@ namespace COL.MultiNGlycan
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            
             _transformParameters.UseAbsolutePeptideIntensity = chkPeptideMinAbso.Checked;
             _transformParameters.AbsolutePeptideIntensity = 0.0;
             if (_transformParameters.UseAbsolutePeptideIntensity)
             {
                 _transformParameters.AbsolutePeptideIntensity = Convert.ToDouble(txtPeptideMinAbso.Text);
             }
+            _transformParameters.MaxCharge = Convert.ToInt16(txtMaxCharge.Text);
+            _peakParameter.SignalToNoiseThreshold = Convert.ToDouble(txtSN.Text);
+            _peakParameter.PeakBackgroundRatio = Convert.ToDouble(txtPeakPeakBackgroundRatioRatio.Text);
             this.Close();
         }
 
@@ -102,7 +106,10 @@ namespace COL.MultiNGlycan
                     if (_transformParameters.UseAbsolutePeptideIntensity)
                     {
                         _transformParameters.AbsolutePeptideIntensity = Convert.ToDouble(txtPeptideMinAbso.Text);
-                    }                   
+                    }
+                    _transformParameters.MaxCharge = Convert.ToInt16(txtMaxCharge.Text);
+                    _peakParameter.SignalToNoiseThreshold = Convert.ToDouble(txtSN.Text);
+                    _peakParameter.PeakBackgroundRatio = Convert.ToDouble(txtPeakPeakBackgroundRatioRatio.Text);             
                 }
                 else
                 {

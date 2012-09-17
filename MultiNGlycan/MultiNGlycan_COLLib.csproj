@@ -83,6 +83,12 @@
     <Compile Include="frmMainESI.Designer.cs">
       <DependentUpon>frmMainESI.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMultiThreads.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMultiThreads.Designer.cs">
+      <DependentUpon>frmMultiThreads.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPeakParameters.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,12 +101,22 @@
     <Compile Include="frmProcessing.Designer.cs">
       <DependentUpon>frmProcessing.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmView.Designer.cs">
+      <DependentUpon>frmView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MultiNGlycanESI.cs" />
-    <Compile Include="MultiNGlycanESIMultiThread.cs" />
+    <Compile Include="MultiNGlycanESIMultiThreads.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMainESI.resx">
       <DependentUpon>frmMainESI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMultiThreads.resx">
+      <DependentUpon>frmMultiThreads.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPeakParameters.resx">
@@ -109,6 +125,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProcessing.resx">
       <DependentUpon>frmProcessing.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmView.resx">
+      <DependentUpon>frmView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
