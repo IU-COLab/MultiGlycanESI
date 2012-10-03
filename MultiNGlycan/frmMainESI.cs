@@ -131,6 +131,34 @@ namespace COL.MultiNGlycan
             frView.ShowDialog();
         }
 
+        private void btnMergeTest_Click(object sender, EventArgs e)
+        {
+            StreamReader sr = new StreamReader(@"D:\Dropbox\for_Yunli_Hu\b1_19_1_07142012-121002 1349_FullList.csv");
+            string tmp = sr.ReadLine();
+            List<ClusteredPeak> clu = new List<ClusteredPeak>();
+            do
+            {
+                tmp = sr.ReadLine();
+                string[] tmpArray = tmp.Split(',');
+                ClusteredPeak tnpCluPeak = new ClusteredPeak(Convert.ToInt32(tmpArray[1]));
+                tnpCluPeak.StartTime = Convert.ToDouble(tmpArray[0]);
+                tnpCluPeak.EndTime = Convert.ToDouble(tmpArray[0]);
+                
+                tnpCluPeak.EndScan = Convert.ToInt32(tmpArray[1]);
+                tnpCluPeak.Intensity = Convert.ToSingle(tmpArray[2]);
+                tnpCluPeak.GlycanCompostion = new COL.GlycoLib.GlycanCompound(
+                                                                                Convert.ToInt32(tmpArray[8]),
+                                                                                Convert.ToInt32(tmpArray[9]),
+                                                                                Convert.ToInt32(tmpArray[10]),
+                                                                                Convert.ToInt32(tmpArray[11]));
+                tnpCluPeak.Charge = Convert.ToInt32(Math.Ceiling(  Convert.ToSingle(tmpArray[12]) / Convert.ToSingle(tmpArray[3])));
+
+                clu.Add(tnpCluPeak);
+            } while (!sr.EndOfStream);
+            sr.Close();
+            MultiNGlycanESI.MergeCluster(clu, 8.0);
+        }
+
 
 
 

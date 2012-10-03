@@ -35,6 +35,7 @@
             this.zgcGlycan = new ZedGraph.ZedGraphControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnSaveAll = new System.Windows.Forms.Button();
+            this.chkSmooth = new System.Windows.Forms.CheckBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -60,6 +61,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.chkSmooth);
             this.splitContainer1.Panel1.Controls.Add(this.btnSaveAll);
             this.splitContainer1.Panel1.Controls.Add(this.cboGlycan);
             this.splitContainer1.Panel1.Controls.Add(this.btnLoad);
@@ -110,6 +112,18 @@
             this.btnSaveAll.UseVisualStyleBackColor = true;
             this.btnSaveAll.Click += new System.EventHandler(this.btnSaveAll_Click);
             // 
+            // chkSmooth
+            // 
+            this.chkSmooth.AutoSize = true;
+            this.chkSmooth.Checked = true;
+            this.chkSmooth.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSmooth.Location = new System.Drawing.Point(890, 8);
+            this.chkSmooth.Name = "chkSmooth";
+            this.chkSmooth.Size = new System.Drawing.Size(62, 17);
+            this.chkSmooth.TabIndex = 2;
+            this.chkSmooth.Text = "Smooth";
+            this.chkSmooth.UseVisualStyleBackColor = true;
+            // 
             // frmView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -119,6 +133,7 @@
             this.Name = "frmView";
             this.Text = "View";
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -133,5 +148,6 @@
         private ZedGraph.ZedGraphControl zgcGlycan;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnSaveAll;
+        private System.Windows.Forms.CheckBox chkSmooth;
     }
 }

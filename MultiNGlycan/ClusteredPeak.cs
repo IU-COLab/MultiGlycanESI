@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using COL.MassLib;
 using COL.GlycoLib;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace COL.MultiNGlycan
 {
-    public class ClusteredPeak
+    [Serializable]
+    public class ClusteredPeak : ICloneable
     {
         private List<MSPeak> _MSPeak;
         private double _StatrTime;
@@ -90,6 +93,19 @@ namespace COL.MultiNGlycan
         {
             get { return _glycanComposition; }
             set { _glycanComposition = value; }
+        }
+        public object Clone() // ICloneable implementation
+        {
+            ClusteredPeak ClusPeaksClone = new ClusteredPeak(this.StartScan);
+            ClusPeaksClone.Charge = this.Charge;
+            ClusPeaksClone.EndScan = this.EndScan;
+            ClusPeaksClone.EndTime = this.EndTime;
+            ClusPeaksClone.GlycanCompostion = this.GlycanCompostion;
+            ClusPeaksClone.Intensity = this.Intensity;
+            ClusPeaksClone.MergedIntensity = this.MergedIntensity;
+            ClusPeaksClone.Peaks = this.Peaks;
+            ClusPeaksClone.StartTime = this.StartTime;
+            return ClusPeaksClone;
         }
     }
 }

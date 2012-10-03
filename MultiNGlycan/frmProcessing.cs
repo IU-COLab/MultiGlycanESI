@@ -30,21 +30,21 @@ namespace COL.MultiNGlycan
             _GlycanScanFilter = argExportScanFilter;
             bgWorker_Process.RunWorkerAsync();
         }
-        public frmProcessing(MultiNGlycanESIMultiThreads argMultiNGlycan, int argExportScanFilter)
-        {
-            InitializeComponent();
-            //_MultiNGlycan = argMultiNGlycan;
-            //int StartScan = argMultiNGlycan.StartScan;
-            //int EndScan = argMultiNGlycan.EndScan;
-            //LstScanNumber = new List<int>();
-            //for (int i = StartScan; i <= EndScan; i++)
-            //{
-            //    LstScanNumber.Add(i);
-            //}
-            //Start = DateTime.Now;
-            //_GlycanScanFilter = argExportScanFilter;
-            //bgWorker_Process.RunWorkerAsync();
-        }
+        //public frmProcessing(MultiNGlycanESIMultiThreads argMultiNGlycan, int argExportScanFilter)
+        //{
+        //    InitializeComponent();
+        //    //_MultiNGlycan = argMultiNGlycan;
+        //    //int StartScan = argMultiNGlycan.StartScan;
+        //    //int EndScan = argMultiNGlycan.EndScan;
+        //    //LstScanNumber = new List<int>();
+        //    //for (int i = StartScan; i <= EndScan; i++)
+        //    //{
+        //    //    LstScanNumber.Add(i);
+        //    //}
+        //    //Start = DateTime.Now;
+        //    //_GlycanScanFilter = argExportScanFilter;
+        //    //bgWorker_Process.RunWorkerAsync();
+        //}
         private void bgWorker_Process_DoWork(object sender, DoWorkEventArgs e)
         {            
             for(int i=0;i<LstScanNumber.Count;i++)
