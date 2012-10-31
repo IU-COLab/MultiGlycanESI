@@ -24,18 +24,49 @@ namespace COL.MultiNGlycan
             //    cboCPU.Items.Add(i); 
             //}
             //cboCPU.SelectedIndex = (int)Math.Floor(cboCPU.Items.Count / 2.0f)-1;
+            float NH4 = MassLib.Atoms.NitrogenMass + 4 * MassLib.Atoms.HydrogenMass;
+            float K = MassLib.Atoms.Potassium;
+            float Na = MassLib.Atoms.SodiumMass;
+            DataTable list = new DataTable();
+            list.Columns.Add(new DataColumn("Display", typeof(string)));
+            list.Columns.Add(new DataColumn("Id", typeof(float)));
+            list.Rows.Add(list.NewRow());
+            list.Rows.Add(list.NewRow());
+            list.Rows.Add(list.NewRow());
+            list.Rows[0][0] = "Ammonium (NH4)";
+            list.Rows[0][1] = NH4;
+            list.Rows[1][0] = "Potassium (K)";
+            list.Rows[1][1] = K;
+            list.Rows[2][0] = "Sodium (Na)";
+            list.Rows[2][1] = Na;
+            cboAdduct.DataSource = list;
+            cboAdduct.DisplayMember = "Display";
+            cboAdduct.ValueMember = "Id";  
+
+
+            cboAdduct.SelectedIndex = 0;
         }
 
 
         private void btnBrowseRaw_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "RAW Files (*.raw)|*.raw";
+            openFileDialog1.Filter = "RAW Files (*.raw; *.mzXML)|*.raw;*.mzxml";
             openFileDialog1.FileName = "";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtRawFile.Text = openFileDialog1.FileName;
-                COL.MassLib.XRawReader raw = new COL.MassLib.XRawReader(txtRawFile.Text);
-                _endScan = raw.NumberOfScans;
+
+                if (Path.GetExtension(openFileDialog1.FileName) == ".raw")
+                {
+                    COL.MassLib.XRawReader raw = new COL.MassLib.XRawReader(txtRawFile.Text);
+                    _endScan = raw.NumberOfScans;
+                }
+                else
+                {
+                    COL.MassLib.mzXMLReader raw = new COL.MassLib.mzXMLReader(txtRawFile.Text);
+                    _endScan = raw.NumberOfScans;
+                }
+
                 txtEndScan.Text = _endScan.ToString();
             }
         }
@@ -65,9 +96,9 @@ namespace COL.MultiNGlycan
             string TimeFormat = "yyMMdd HHmm";            // Use this format
 
             saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(txtRawFile.Text) + "-" + time.ToString(TimeFormat) + ".csv";
-            if (txtRawFile.Text == "" || (rdoUserList.Checked && txtGlycanList.Text == ""))
+            if (txtRawFile.Text == "" || (rdoUserList.Checked && txtGlycanList.Text == "") || txtMaxLCTime.Text =="")
             {
-                MessageBox.Show("Input raw and list or selest file.");
+                MessageBox.Show("Please check input values.");
                 return ;
             }
 
@@ -84,16 +115,26 @@ namespace COL.MultiNGlycan
 
                    // MultiNGlycanESIMultiThreads MultiESIs = new MultiNGlycanESIMultiThreads(glycanlist, txtRawFile.Text, Convert.ToInt32(cboCPU.SelectedItem), _peakParameter, _transformParameters);
 
-                    MultiNGlycanESI ESI = new MultiNGlycanESI(txtRawFile.Text, Convert.ToInt32(txtStartScan.Text), Convert.ToInt32(txtEndScan.Text), glycanlist, Convert.ToDouble(txtPPM.Text), Convert.ToDouble(txtGlycanPPM.Text), Convert.ToDouble(txtMergeWindow.Text), chkPermethylated.Checked, chkReducedReducingEnd.Checked);
+                    MultiNGlycanESI ESI = new MultiNGlycanESI(txtRawFile.Text, Convert.ToInt32(txtStartScan.Text), Convert.ToInt32(txtEndScan.Text), glycanlist, Convert.ToDouble(txtPPM.Text), Convert.ToDouble(txtGlycanPPM.Text), Convert.ToDouble(txtMaxLCTime.Text), chkPermethylated.Checked, chkReducedReducingEnd.Checked);
                     ESI.IncludeNonClusterGlycan = chkSingleCluster.Checked;
                     ESI.MergeDifferentChargeIntoOne = chkMergeDffCharge.Checked;
                     ESI.PeakProcessorParameters = _peakParameter;
                     ESI.TransformParameters = _transformParameters;
                     ESI.ExportFilePath = saveFileDialog1.FileName;
+
+                    float AdductMass=0.0f;
+                    if (cboAdduct.SelectedIndex < 3 && cboAdduct.SelectedIndex>=0)
+                    {
+                        AdductMass = Convert.ToSingle(((DataRowView)cboAdduct.Items[cboAdduct.SelectedIndex])[1]);
+                    }
+                    else
+                    {
+                        AdductMass = Convert.ToSingle(cboAdduct.Text);
+                    }
+                    ESI.AdductMass = AdductMass;
                     frmProcessing frmProcess = new frmProcessing(ESI, Convert.ToInt32(txtOutputScanFilter.Text));
                     frmProcess.ShowDialog();
-                }
-            
+                }            
         }
 
         private void btnBrowseGlycan_Click(object sender, EventArgs e)
@@ -101,11 +142,9 @@ namespace COL.MultiNGlycan
             openFileDialog1.FileName = "";
             openFileDialog1.Filter = "CSV Files (.csv)|*.csv";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                
+            {                
                 txtGlycanList.Text = openFileDialog1.FileName;
             }
-
         }
 
         private void rdoAllRaw_CheckedChanged(object sender, EventArgs e)
@@ -115,7 +154,6 @@ namespace COL.MultiNGlycan
             txtEndScan.Enabled = !rdoAllRaw.Checked;
             txtStartScan.Text = "1";
             txtEndScan.Text = _endScan.ToString();
-
         }
 
         private void btnSetting_Click(object sender, EventArgs e)
@@ -156,12 +194,8 @@ namespace COL.MultiNGlycan
                 clu.Add(tnpCluPeak);
             } while (!sr.EndOfStream);
             sr.Close();
-            MultiNGlycanESI.MergeCluster(clu, 8.0);
+            //MultiNGlycanESI.MergeCluster(clu, 8.0);
         }
-
-
-
-
  
     }
 }

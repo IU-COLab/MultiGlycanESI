@@ -105,12 +105,12 @@ namespace COL.MultiNGlycan
             LstIntensity.Sort();
             LstIntensity.Reverse();
 
-            double Cutoff = Math.Sqrt(MaxIntensity);
-            PointPairList CutoffPPL = new PointPairList();
-            CutoffPPL.Add(SmoothPPL[0].X, Cutoff);
-            CutoffPPL.Add(SmoothPPL[SmoothPPL.Count-1].X, Cutoff);
-            LineItem Background = GP.AddCurve("Cufoff", CutoffPPL, Color.Black);
-            Background.Line.Width = 3.0f;
+            //double Cutoff = Math.Sqrt(MaxIntensity);
+            //PointPairList CutoffPPL = new PointPairList();
+            //CutoffPPL.Add(SmoothPPL[0].X, Cutoff);
+            //CutoffPPL.Add(SmoothPPL[SmoothPPL.Count-1].X, Cutoff);
+            //LineItem Background = GP.AddCurve("Cufoff", CutoffPPL, Color.Black);
+            //Background.Line.Width = 3.0f;
             zgcGlycan.AxisChange();
             zgcGlycan.Refresh();
         }

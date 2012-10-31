@@ -8,17 +8,18 @@ using COL.MassLib;
 using System.Threading;
 namespace COL.MultiNGlycan
 {
-   
+
+    //Mass Spectrometry Adduct Calculator http://fiehnlab.ucdavis.edu/staff/kind/Metabolomics/MS-Adduct-Calculator/
     public class MultiNGlycanESI
     {
         private ManualResetEvent _doneEvent;
         private string _rawFile;
         private string _glycanFile;
         private List<ClusteredPeak> _cluPeaks;
-        private List<ClusteredPeak> _mergePeaks;
+        private List<ClusteredPeak> _mergeClusterResultPeaks;
         private double _massPPM;
         private double _glycanPPM;
-        private double _MergeDurationMin = 5.0;
+        private double _MergeDurationMax = 5.0;
         private List<GlycanCompound> _GlycanList;
         private bool _isPermethylated;
         private bool _isReducedReducingEnd;
@@ -31,9 +32,10 @@ namespace COL.MultiNGlycan
         private int _MaxCharge = 5;
         private bool _FindClusterUseList = true; 
         private string _ExportFilePath;
-        XRawReader rawReader;
+        private float _adductMass =0.0f;
+        IRawFileReader rawReader;
         List<int> MSScanList;
-        public MultiNGlycanESI(string argRawFile,int argStartScan,int argEndScan, string argGlycanList, double argMassPPM ,double argGlycanMass,double argMergeDurationMin, bool argPermenthylated, bool argReducedReducingEnd)
+        public MultiNGlycanESI(string argRawFile,int argStartScan,int argEndScan, string argGlycanList, double argMassPPM ,double argGlycanMass,double argMergeDurationMax, bool argPermenthylated, bool argReducedReducingEnd)
         {
             _rawFile = argRawFile;
             _cluPeaks = new List<ClusteredPeak>();
@@ -44,33 +46,40 @@ namespace COL.MultiNGlycan
             _glycanPPM = argGlycanMass;
             _StartScan = argStartScan;
             _EndScan = argEndScan;
-            _MergeDurationMin = argMergeDurationMin;
+            _MergeDurationMax = argMergeDurationMax;
             _IncludeNonClusterGlycan = true;
             //Read Glycan list           
             ReadGlycanList();
-            rawReader = new XRawReader(_rawFile);
+            if (Path.GetExtension(argRawFile) == ".raw")
+            {
+                rawReader = new XRawReader(_rawFile);
+            }
+            else
+            {
+                rawReader = new mzXMLReader(_rawFile);
+            }
         }
-        public MultiNGlycanESI(XRawReader argRaw, List<int> argMSScanList, List<GlycoLib.GlycanCompound> argGlycanCompound, double argMassPPM, double argGlycanMass, double argMergeDurationMin, bool argPermenthylated, bool argReducedReducingEnd, ManualResetEvent doneEvent)
-        {
-            rawReader = argRaw;
-            _GlycanList = argGlycanCompound;
-            MSScanList = argMSScanList;
-            _cluPeaks = new List<ClusteredPeak>();
-            _massPPM = argMassPPM;
-            _isPermethylated = argPermenthylated;
-            _isReducedReducingEnd = argReducedReducingEnd;
-            _glycanPPM = argGlycanMass;
-            _MergeDurationMin = argMergeDurationMin;
-            _IncludeNonClusterGlycan = true;
-            _doneEvent = doneEvent;
-        }
+        //public MultiNGlycanESI(IRawFileReader argRaw, List<int> argMSScanList, List<GlycoLib.GlycanCompound> argGlycanCompound, double argMassPPM, double argGlycanMass, double argMergeDurationMin, bool argPermenthylated, bool argReducedReducingEnd, ManualResetEvent doneEvent)
+        //{
+        //    rawReader = argRaw;
+        //    _GlycanList = argGlycanCompound;
+        //    MSScanList = argMSScanList;
+        //    _cluPeaks = new List<ClusteredPeak>();
+        //    _massPPM = argMassPPM;
+        //    _isPermethylated = argPermenthylated;
+        //    _isReducedReducingEnd = argReducedReducingEnd;
+        //    _glycanPPM = argGlycanMass;
+        //    _MergeDurationMin = argMergeDurationMin;
+        //    _IncludeNonClusterGlycan = true;
+        //    _doneEvent = doneEvent;
+        //}
         public List<ClusteredPeak> ClustedPeak
         {
             get { return _cluPeaks; }
         }
         public List<ClusteredPeak> MergedPeak
         {
-            get { return _mergePeaks; }
+            get { return _mergeClusterResultPeaks; }
         }
         public string ExportFilePath
         {
@@ -109,11 +118,16 @@ namespace COL.MultiNGlycan
             get { return _transformParameters; }
             set { _transformParameters = value; }
         }
+        public float AdductMass
+        {
+            get { return _adductMass; }
+            set { _adductMass = value; }
+        }
         public void ProcessSingleScan(int argScanNo)
         {
              
-            rawReader.PeakProcessorParameter = _peakParameter;
-            rawReader.TransformParameter = _transformParameters;
+            rawReader.SetPeakProcessorParameter( _peakParameter);
+            rawReader.SetTransformParameter(_transformParameters);
 
             if (rawReader.GetMsLevel(argScanNo) == 1)
             {
@@ -125,13 +139,7 @@ namespace COL.MultiNGlycan
                     mzList.Add(Peak.MonoisotopicMZ);
                 }
                 mzList.Sort();
-                //foreach (float f in mzList)
-                //{
-                //    if (f >= 1100.0f && f <= 1116.0f)
-                //    {
-                //        Console.WriteLine(argScanNo.ToString() + "-"+f.ToString());
-                //    }
-                //}
+     
                 
                 List<ClusteredPeak> Cluster;
                 if (_FindClusterUseList)
@@ -190,8 +198,8 @@ namespace COL.MultiNGlycan
         }        
         public void Process(Object threadContext)
         {   
-            rawReader.PeakProcessorParameter = _peakParameter;
-            rawReader.TransformParameter = _transformParameters;
+            rawReader.SetPeakProcessorParameter(_peakParameter);
+            rawReader.SetTransformParameter(_transformParameters);
             if (MSScanList == null)
             {
                 MSScanList = new List<int>();
@@ -209,56 +217,56 @@ namespace COL.MultiNGlycan
             }
             _doneEvent.Set();
         }
-        public int aaFindClosedPeakIdx(double argMz)
-        {
-            int min = 0;
-            int max = _GlycanList.Count-1;
-            int mid = -1;
+        //public int aaFindClosedPeakIdx(double argMz)
+        //{
+        //    int min = 0;
+        //    int max = _GlycanList.Count-1;
+        //    int mid = -1;
 
-            if (_GlycanList[max].MonoMass < argMz)
-            {
-                return max;
-            }
-            if (_GlycanList[min].MonoMass > argMz)
-            {
-                return min;
-            }
+        //    if (_GlycanList[max].MonoMass < argMz)
+        //    {
+        //        return max;
+        //    }
+        //    if (_GlycanList[min].MonoMass > argMz)
+        //    {
+        //        return min;
+        //    }
 
-            do
-            {
-                mid = min + (max - min) / 2;
-                if (argMz > _GlycanList[mid].MonoMass)
-                {
-                    min = mid + 1;
-                }
-                else
-                {
-                    max = mid - 1;
-                }
-            } while (min < max);
+        //    do
+        //    {
+        //        mid = min + (max - min) / 2;
+        //        if (argMz > _GlycanList[mid].MonoMass)
+        //        {
+        //            min = mid + 1;
+        //        }
+        //        else
+        //        {
+        //            max = mid - 1;
+        //        }
+        //    } while (min < max);
 
-            int StartIdx = mid - 2;
-            if (StartIdx < 0)
-            {
-                StartIdx = 0;
-            }
-            int EndIdx = mid + 2;
-            if (EndIdx > _GlycanList.Count-1)
-            {
-                EndIdx = _GlycanList.Count - 1;
-            }
-            int CandIdx = 0;
-            double different = 1000.0;
-            for (int i = StartIdx; i <= EndIdx; i++)
-            {
-                if (Math.Abs(argMz - _GlycanList[i].MonoMass) < different)
-                {
-                    different = Math.Abs(argMz - _GlycanList[i].MonoMass);
-                    CandIdx = i;
-                }
-            }
-            return CandIdx;
-        }
+        //    int StartIdx = mid - 2;
+        //    if (StartIdx < 0)
+        //    {
+        //        StartIdx = 0;
+        //    }
+        //    int EndIdx = mid + 2;
+        //    if (EndIdx > _GlycanList.Count-1)
+        //    {
+        //        EndIdx = _GlycanList.Count - 1;
+        //    }
+        //    int CandIdx = 0;
+        //    double different = 1000.0;
+        //    for (int i = StartIdx; i <= EndIdx; i++)
+        //    {
+        //        if (Math.Abs(argMz - _GlycanList[i].MonoMass) < different)
+        //        {
+        //            different = Math.Abs(argMz - _GlycanList[i].MonoMass);
+        //            CandIdx = i;
+        //        }
+        //    }
+        //    return CandIdx;
+        //}
         /// <summary>
         /// 
         /// </summary>
@@ -267,8 +275,8 @@ namespace COL.MultiNGlycan
         {
             //Merged Cluster
             StreamWriter sw = new StreamWriter(_ExportFilePath);
-            sw.WriteLine("Start Time,End Time,Start Scan Num,End Scan Num,Charge,Abuntance,1st,2nd,3rd,4th,5th,HexNac,Hex,deHex,Sia,Composition mono");
-            foreach (ClusteredPeak cls in _mergePeaks)
+            sw.WriteLine("Start Time,End Time,Start Scan Num,End Scan Num,Charge,Abuntance,HexNac,Hex,deHex,Sia,Composition mono");
+            foreach (ClusteredPeak cls in _mergeClusterResultPeaks)
             {
                 if (argContainCompositionOnly && cls.GlycanCompostion == null)
                 {
@@ -290,23 +298,14 @@ namespace COL.MultiNGlycan
                 }
                 export = export + cls.StartScan + ","
                                 + cls.EndScan +","
-                               + cls.Charge + ",";
-
-                export = export + cls.MergedIntensity.ToString() + ",";
-                                
-                for (int i = 0; i < cls.Peaks.Count; i++)
-                {
-                    export = export + cls.Peaks[i].MonoisotopicMZ + ",";
-                }
-                for (int i = 0; i < 5 - cls.Peaks.Count-1; i++)
-                {
-                    export = export + ",";
-                }
-                            
+                               + cls.Charge +","
+                                 + cls.MergedIntensity.ToString() + ",";  
+                                       
+                         
                 if (cls.GlycanCompostion != null)
                 {
                     string Composition = cls.GlycanCompostion.NoOfHexNAc + "," + cls.GlycanCompostion.NoOfHex + "," + cls.GlycanCompostion.NoOfDeHex + "," + cls.GlycanCompostion.NoOfSia;
-                    export = export + "," + Composition + "," + cls.GlycanCompostion.MonoMass ;
+                    export = export + Composition + "," + cls.GlycanCompostion.MonoMass ;
                 }
                 else
                 {
@@ -440,16 +439,16 @@ namespace COL.MultiNGlycan
             {                          
                 /// Cluster of glycan
                 /// Z = 1 [M+H]     [M+NH4]
-                /// Z = 2 [M+2H]    [M+H+NH4]	[M+2NH4]
-                /// Z = 3 [M+3H]	[M+2H+NH4]	[M+H+2NH4]	[M+3NH4]
+                /// Z = 2 [M+2H]   [M+NH4+H]	    [M+2NH4]
+                /// Z = 3 [M+3H]	[M+NH4+2H]	[M+2NH4+H] 	[M+3NH4]
                 /// Z = 4 [M+4H]	[M+NH4+3H]	[M+2NH4+2H]	[M+3NH4+H]	[M+4NH4]
                 //Create cluster interval
                 double[] Step = new double[Convert.ToInt32(SortedPeaks[i].ChargeState)+1];
-                double NH3 = MassLib.Atoms.NitrogenMass + 3 * MassLib.Atoms.HydrogenMass;
+                //double NH3 = MassLib.Atoms.NitrogenMass + 3 * MassLib.Atoms.HydrogenMass;
                 Step[0] = SortedPeaks[i].MonoisotopicMZ;
                 for (int j = 1; j <= SortedPeaks[i].ChargeState; j++)
                 {  
-                    Step[j] = Step[j - 1] + (NH3) / SortedPeaks[i].ChargeState;     
+                    Step[j] = Step[j - 1] + (_adductMass) / SortedPeaks[i].ChargeState;     
                 }
                 int[] PeakIdx = new int[Step.Length];
                 PeakIdx[0] = i;
@@ -502,132 +501,150 @@ namespace COL.MultiNGlycan
         /// <returns></returns>
         public void MergeCluster()
         {
-            List<ClusteredPeak> MergedCluster = new List<ClusteredPeak>();
+            //List<ClusteredPeak> MergedClusterForAllKeys = new List<ClusteredPeak>();
+            _mergeClusterResultPeaks = new List<ClusteredPeak>();
             Dictionary<string, List<ClusteredPeak>> dictAllPeak = new Dictionary<string, List<ClusteredPeak>>();
-            Dictionary<string, double> dictPeakIntensityMax = new Dictionary<string, double>();
             for (int i = 0; i < _cluPeaks.Count; i++)
             {
-                string key = _cluPeaks[i].GlycanCompostion.NoOfHexNAc.ToString() + "-" +
-                                    _cluPeaks[i].GlycanCompostion.NoOfHex.ToString() + "-" +
-                                    _cluPeaks[i].GlycanCompostion.NoOfDeHex.ToString() + "-" +
-                                    _cluPeaks[i].GlycanCompostion.NoOfSia.ToString() + "-" +
-                                    _cluPeaks[i].Charge.ToString();
+                string key ="";
+                if (_MergeDifferentCharge)
+                {
+                    key = _cluPeaks[i].GlycanCompostion.NoOfHexNAc.ToString() + "-" +
+                                       _cluPeaks[i].GlycanCompostion.NoOfHex.ToString() + "-" +
+                                       _cluPeaks[i].GlycanCompostion.NoOfDeHex.ToString() + "-" +
+                                       _cluPeaks[i].GlycanCompostion.NoOfSia.ToString() ;
+                }
+                else
+                {
+                    key = _cluPeaks[i].GlycanCompostion.NoOfHexNAc.ToString() + "-" +
+                                     _cluPeaks[i].GlycanCompostion.NoOfHex.ToString() + "-" +
+                                     _cluPeaks[i].GlycanCompostion.NoOfDeHex.ToString() + "-" +
+                                     _cluPeaks[i].GlycanCompostion.NoOfSia.ToString() + "-" +
+                                     _cluPeaks[i].Charge.ToString();
+                }
                 if (!dictAllPeak.ContainsKey(key))
                 {
                     dictAllPeak.Add(key, new List<ClusteredPeak>());
-                    dictPeakIntensityMax.Add(key, _cluPeaks[i].Intensity);
                 }
                 dictAllPeak[key].Add(_cluPeaks[i]);
-                if (_cluPeaks[i].Intensity > dictPeakIntensityMax[key])
-                {
-                    dictPeakIntensityMax[key] = _cluPeaks[i].Intensity;
-                }
+
             }
 
             foreach (string KEY in dictAllPeak.Keys)
             {
                 List<ClusteredPeak> CLSPeaks = dictAllPeak[KEY];
-                double threshold = Math.Sqrt(dictPeakIntensityMax[KEY]);
                 ClusteredPeak mergedPeak = null;
-                for (int i = 0; i < CLSPeaks.Count; i++)
-                {
-                    if (CLSPeaks[i].Intensity < threshold)
-                    {
-                        continue;
-                    }
-                    if (mergedPeak == null)
-                    {
-                        mergedPeak = (ClusteredPeak)CLSPeaks[i].Clone();
-                        mergedPeak.MergedIntensity = CLSPeaks[i].Intensity;
-                        continue;
-                    }
-                    if (CLSPeaks[i].StartTime - mergedPeak.EndTime < 1.0)
-                    {
-                        mergedPeak.EndTime = CLSPeaks[i].StartTime;
-                        mergedPeak.EndScan = CLSPeaks[i].StartScan;
-                        mergedPeak.MergedIntensity = mergedPeak.MergedIntensity + CLSPeaks[i].Intensity;
-                    }
-                    else
-                    {
-                        MergedCluster.Add(mergedPeak);
-                        mergedPeak = (ClusteredPeak)CLSPeaks[i].Clone();
-                        mergedPeak.MergedIntensity = CLSPeaks[i].Intensity;
-                    }
-                }
-                if (MergedCluster.Count>1 && MergedCluster[MergedCluster.Count - 1] != mergedPeak)
-                {
-                    MergedCluster.Add(mergedPeak);
-                }
-            }
-            _mergePeaks = MergedCluster;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="argDurationMin"></param>
-        /// <returns></returns>
-        public static List<ClusteredPeak> MergeCluster(List<ClusteredPeak> argCLU, double argDurationMin)
-        {
-            List<ClusteredPeak> MergedCluster = new List<ClusteredPeak>();
-            List<ClusteredPeak> _cluPeaks = argCLU;
-            Dictionary<string, List<ClusteredPeak>> dictAllPeak = new Dictionary<string, List<ClusteredPeak>>();
-            Dictionary<string, double> dictPeakIntensityMax = new Dictionary<string, double>();
-            for (int i = 0; i < _cluPeaks.Count; i++)
-            {
-                string key = _cluPeaks[i].GlycanCompostion.NoOfHexNAc.ToString() +"-"+
-                                    _cluPeaks[i].GlycanCompostion.NoOfHex.ToString() + "-" +
-                                    _cluPeaks[i].GlycanCompostion.NoOfDeHex.ToString() + "-" +
-                                    _cluPeaks[i].GlycanCompostion.NoOfSia.ToString() + "-" +
-                                    _cluPeaks[i].Charge.ToString();
-                if (!dictAllPeak.ContainsKey(key))
-                {
-                    dictAllPeak.Add(key, new List<ClusteredPeak>());
-                    dictPeakIntensityMax.Add(key, _cluPeaks[i].Intensity);
-                }
-                dictAllPeak[key].Add(_cluPeaks[i]);
-                if (_cluPeaks[i].Intensity > dictPeakIntensityMax[key])
-                {
-                    dictPeakIntensityMax[key] = _cluPeaks[i].Intensity;
-                }
-            }
 
-            foreach (string KEY in dictAllPeak.Keys)
-            {
-                List<ClusteredPeak> CLSPeaks = dictAllPeak[KEY];
-                double threshold = Math.Sqrt(dictPeakIntensityMax[KEY]);
-                ClusteredPeak mergedPeak =null;
-                for(int i =0 ; i< CLSPeaks.Count;i++)
+                //All peaks within duration
+                if (CLSPeaks[CLSPeaks.Count - 1].StartTime - CLSPeaks[0].StartTime <= _MergeDurationMax)
                 {
-                    if (CLSPeaks[i].Intensity < threshold)
+                    mergedPeak = (ClusteredPeak)CLSPeaks[0].Clone();
+                    mergedPeak.EndTime = CLSPeaks[CLSPeaks.Count - 1].StartTime;
+                    mergedPeak.EndScan = CLSPeaks[CLSPeaks.Count - 1].StartScan;
+                    for (int j = 0; j < CLSPeaks.Count; j++)
                     {
-                        continue;
+                        mergedPeak.MergedIntensity = mergedPeak.MergedIntensity + CLSPeaks[j].Intensity;
                     }
-                    if (mergedPeak == null)
+                    _mergeClusterResultPeaks.Add(mergedPeak);
+                }
+                else
+                {
+                    for (int i = 0; i < CLSPeaks.Count; i++)
                     {
-                        mergedPeak = (ClusteredPeak)CLSPeaks[i].Clone();
-                        mergedPeak.MergedIntensity = CLSPeaks[i].Intensity;
-                        continue;
+                        if (mergedPeak == null)
+                        {
+                            mergedPeak = (ClusteredPeak)CLSPeaks[i].Clone();
+                            mergedPeak.MergedIntensity = CLSPeaks[i].Intensity;
+                            continue;
+                        }
+                        if (CLSPeaks[i].StartTime - mergedPeak.EndTime < 1.0)
+                        {
+                            mergedPeak.EndTime = CLSPeaks[i].StartTime;
+                            mergedPeak.EndScan = CLSPeaks[i].StartScan;
+                            mergedPeak.MergedIntensity = mergedPeak.MergedIntensity + CLSPeaks[i].Intensity;
+                        }
+                        else //New Cluster
+                        {
+                            _mergeClusterResultPeaks.Add(mergedPeak);
+                            mergedPeak = (ClusteredPeak)CLSPeaks[i].Clone();
+                            mergedPeak.MergedIntensity = CLSPeaks[i].Intensity;
+                        }
                     }
-                    if (CLSPeaks[i].StartTime - mergedPeak.EndTime < 1.0)
+                    if (_mergeClusterResultPeaks.Count > 1 && _mergeClusterResultPeaks[_mergeClusterResultPeaks.Count - 1] != mergedPeak) //Add last Cluster into result
                     {
-                        mergedPeak.EndTime = CLSPeaks[i].StartTime;
-                        mergedPeak.EndScan = CLSPeaks[i].StartScan;
-                        mergedPeak.MergedIntensity = mergedPeak.MergedIntensity + CLSPeaks[i].Intensity;
-                    }
-                    else
-                    {
-                        MergedCluster.Add(mergedPeak);
-                        mergedPeak = (ClusteredPeak)CLSPeaks[i].Clone();
-                        mergedPeak.MergedIntensity = CLSPeaks[i].Intensity;
+                        _mergeClusterResultPeaks.Add(mergedPeak);
                     }
                 }
-                if (MergedCluster[MergedCluster.Count - 1] != mergedPeak)
-                {
-                    MergedCluster.Add(mergedPeak);
-                }
-            } 
-            return MergedCluster;
+            }
+            //_mergeClusterResultPeaks = MergedCluster;
         }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="argDurationMin"></param>
+        ///// <returns></returns>
+        //public static List<ClusteredPeak> MergeCluster(List<ClusteredPeak> argCLU, double argDurationMin)
+        //{
+        //    List<ClusteredPeak> MergedCluster = new List<ClusteredPeak>();
+        //    List<ClusteredPeak> _cluPeaks = argCLU;
+        //    Dictionary<string, List<ClusteredPeak>> dictAllPeak = new Dictionary<string, List<ClusteredPeak>>();
+        //    Dictionary<string, double> dictPeakIntensityMax = new Dictionary<string, double>();
+        //    for (int i = 0; i < _cluPeaks.Count; i++)
+        //    {
+        //        string key = _cluPeaks[i].GlycanCompostion.NoOfHexNAc.ToString() +"-"+
+        //                            _cluPeaks[i].GlycanCompostion.NoOfHex.ToString() + "-" +
+        //                            _cluPeaks[i].GlycanCompostion.NoOfDeHex.ToString() + "-" +
+        //                            _cluPeaks[i].GlycanCompostion.NoOfSia.ToString() + "-" +
+        //                            _cluPeaks[i].Charge.ToString();
+        //        if (!dictAllPeak.ContainsKey(key))
+        //        {
+        //            dictAllPeak.Add(key, new List<ClusteredPeak>());
+        //            dictPeakIntensityMax.Add(key, _cluPeaks[i].Intensity);
+        //        }
+        //        dictAllPeak[key].Add(_cluPeaks[i]);
+        //        if (_cluPeaks[i].Intensity > dictPeakIntensityMax[key])
+        //        {
+        //            dictPeakIntensityMax[key] = _cluPeaks[i].Intensity;
+        //        }
+        //    }
+
+        //    foreach (string KEY in dictAllPeak.Keys)
+        //    {
+        //        List<ClusteredPeak> CLSPeaks = dictAllPeak[KEY];
+        //        double threshold = Math.Sqrt(dictPeakIntensityMax[KEY]);
+        //        ClusteredPeak mergedPeak =null;
+        //        for(int i =0 ; i< CLSPeaks.Count;i++)
+        //        {
+        //            if (CLSPeaks[i].Intensity < threshold)
+        //            {
+        //                continue;
+        //            }
+        //            if (mergedPeak == null)
+        //            {
+        //                mergedPeak = (ClusteredPeak)CLSPeaks[i].Clone();
+        //                mergedPeak.MergedIntensity = CLSPeaks[i].Intensity;
+        //                continue;
+        //            }
+        //            if (CLSPeaks[i].StartTime - mergedPeak.EndTime < 1.0)
+        //            {
+        //                mergedPeak.EndTime = CLSPeaks[i].StartTime;
+        //                mergedPeak.EndScan = CLSPeaks[i].StartScan;
+        //                mergedPeak.MergedIntensity = mergedPeak.MergedIntensity + CLSPeaks[i].Intensity;
+        //            }
+        //            else
+        //            {
+        //                MergedCluster.Add(mergedPeak);
+        //                mergedPeak = (ClusteredPeak)CLSPeaks[i].Clone();
+        //                mergedPeak.MergedIntensity = CLSPeaks[i].Intensity;
+        //            }
+        //        }
+        //        if (MergedCluster[MergedCluster.Count - 1] != mergedPeak)
+        //        {
+        //            MergedCluster.Add(mergedPeak);
+        //        }
+        //    } 
+        //    return MergedCluster;
+        //}
         public static double GetMassPPM(double argExactMass, double argMeasureMass)
         {
             return Math.Abs(Convert.ToDouble(((argMeasureMass - argExactMass) / argExactMass) * Math.Pow(10.0, 6.0)));

@@ -55,14 +55,16 @@
             this.chkSingleCluster = new System.Windows.Forms.CheckBox();
             this.btnSetting = new System.Windows.Forms.Button();
             this.chkMergeDffCharge = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtMergeWindow = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtOutputScanFilter = new System.Windows.Forms.TextBox();
             this.cboCPU = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.btnMergeTest = new System.Windows.Forms.Button();
+            this.cboAdduct = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtOutputScanFilter = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtMaxLCTime = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -304,9 +306,9 @@
             this.chkSingleCluster.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSingleCluster.Location = new System.Drawing.Point(138, 158);
             this.chkSingleCluster.Name = "chkSingleCluster";
-            this.chkSingleCluster.Size = new System.Drawing.Size(191, 17);
+            this.chkSingleCluster.Size = new System.Drawing.Size(132, 17);
             this.chkSingleCluster.TabIndex = 18;
-            this.chkSingleCluster.Text = "Include non-modified glycans(NH4)";
+            this.chkSingleCluster.Text = "Include native glycans";
             this.chkSingleCluster.UseVisualStyleBackColor = true;
             // 
             // btnSetting
@@ -331,48 +333,10 @@
             this.chkMergeDffCharge.Text = "Merge Different Charge";
             this.chkMergeDffCharge.UseVisualStyleBackColor = true;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(335, 138);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(99, 26);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Max LC elution time\r\n/glycan(min) :";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label5.Visible = false;
-            // 
-            // txtMergeWindow
-            // 
-            this.txtMergeWindow.Location = new System.Drawing.Point(439, 141);
-            this.txtMergeWindow.Name = "txtMergeWindow";
-            this.txtMergeWindow.Size = new System.Drawing.Size(21, 20);
-            this.txtMergeWindow.TabIndex = 22;
-            this.txtMergeWindow.Text = "8";
-            this.txtMergeWindow.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 189);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 26);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "Output greater \r\nthan (scans):";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtOutputScanFilter
-            // 
-            this.txtOutputScanFilter.Location = new System.Drawing.Point(99, 192);
-            this.txtOutputScanFilter.Name = "txtOutputScanFilter";
-            this.txtOutputScanFilter.Size = new System.Drawing.Size(21, 20);
-            this.txtOutputScanFilter.TabIndex = 24;
-            this.txtOutputScanFilter.Text = "2";
-            // 
             // cboCPU
             // 
             this.cboCPU.FormattingEnabled = true;
-            this.cboCPU.Location = new System.Drawing.Point(426, 166);
+            this.cboCPU.Location = new System.Drawing.Point(301, -4);
             this.cboCPU.Name = "cboCPU";
             this.cboCPU.Size = new System.Drawing.Size(30, 21);
             this.cboCPU.TabIndex = 25;
@@ -381,7 +345,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(335, 169);
+            this.label7.Location = new System.Drawing.Point(211, -1);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 13);
             this.label7.TabIndex = 26;
@@ -409,19 +373,73 @@
             this.btnMergeTest.Visible = false;
             this.btnMergeTest.Click += new System.EventHandler(this.btnMergeTest_Click);
             // 
+            // cboAdduct
+            // 
+            this.cboAdduct.FormattingEnabled = true;
+            this.cboAdduct.Location = new System.Drawing.Point(397, 136);
+            this.cboAdduct.Name = "cboAdduct";
+            this.cboAdduct.Size = new System.Drawing.Size(122, 21);
+            this.cboAdduct.TabIndex = 14;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(320, 141);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(71, 13);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "Adduct mass:";
+            // 
+            // txtOutputScanFilter
+            // 
+            this.txtOutputScanFilter.Location = new System.Drawing.Point(99, 192);
+            this.txtOutputScanFilter.Name = "txtOutputScanFilter";
+            this.txtOutputScanFilter.Size = new System.Drawing.Size(21, 20);
+            this.txtOutputScanFilter.TabIndex = 24;
+            this.txtOutputScanFilter.Text = "2";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(15, 189);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(78, 26);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Output greater \r\nthan (scans):";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(320, 172);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(130, 13);
+            this.label9.TabIndex = 30;
+            this.label9.Text = "Max LC eluction time(min):";
+            // 
+            // txtMaxLCTime
+            // 
+            this.txtMaxLCTime.Location = new System.Drawing.Point(450, 169);
+            this.txtMaxLCTime.Name = "txtMaxLCTime";
+            this.txtMaxLCTime.Size = new System.Drawing.Size(69, 20);
+            this.txtMaxLCTime.TabIndex = 31;
+            this.txtMaxLCTime.Text = "8";
+            // 
             // frmMainESI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(531, 217);
+            this.Controls.Add(this.txtMaxLCTime);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.cboAdduct);
             this.Controls.Add(this.btnMergeTest);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.cboCPU);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtOutputScanFilter);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtMergeWindow);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.chkMergeDffCharge);
             this.Controls.Add(this.btnSetting);
             this.Controls.Add(this.chkSingleCluster);
@@ -439,7 +457,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMainESI";
-            this.Text = "MultiNglycan-ESI v0.8.3.2";
+            this.Text = "MultiNglycan-ESI v0.9.1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -478,13 +496,15 @@
         private System.Windows.Forms.CheckBox chkSingleCluster;
         private System.Windows.Forms.Button btnSetting;
         private System.Windows.Forms.CheckBox chkMergeDffCharge;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtMergeWindow;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtOutputScanFilter;
         private System.Windows.Forms.ComboBox cboCPU;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Button btnMergeTest;
+        private System.Windows.Forms.ComboBox cboAdduct;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtOutputScanFilter;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtMaxLCTime;
     }
 }
