@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace COL.MultiNGlycan
+namespace COL.MultiGlycan
 {
     public partial class frmPeakParameters : Form
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Microsoft.Win32;
-namespace COL.MultiNGlycan
+namespace COL.MultiGlycan
 {
     static class Program
     {
@@ -25,16 +25,11 @@ namespace COL.MultiNGlycan
                     break;
                 }    
             }
-            if (foundXCalibur)
-            {
-                Application.Run(new frmMainESI());
-                //Application.Run(new frmMultiThreads());
+            if (!foundXCalibur)
+            {     
+                MessageBox.Show("Please install Xcalibur to support .raw or use mzXML as input");              
             }
-            else
-            {
-                MessageBox.Show("Please install Xcalibur");
-                return;
-            }
+            Application.Run(new frmMainESI());
         }
     }
 }

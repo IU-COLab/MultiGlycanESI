@@ -1,4 +1,4 @@
-﻿namespace COL.MultiNGlycan
+﻿namespace COL.MultiGlycan
 {
     partial class frmMainESI
     {
@@ -43,8 +43,6 @@
             this.txtPPM = new System.Windows.Forms.TextBox();
             this.chkPermethylated = new System.Windows.Forms.CheckBox();
             this.chkReducedReducingEnd = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtGlycanPPM = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtStartScan = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -52,26 +50,48 @@
             this.rdoAllRaw = new System.Windows.Forms.RadioButton();
             this.rdoScanNum = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chkSingleCluster = new System.Windows.Forms.CheckBox();
             this.btnSetting = new System.Windows.Forms.Button();
             this.chkMergeDffCharge = new System.Windows.Forms.CheckBox();
             this.cboCPU = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnView = new System.Windows.Forms.Button();
             this.btnMergeTest = new System.Windows.Forms.Button();
-            this.cboAdduct = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtOutputScanFilter = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.txtMaxLCTime = new System.Windows.Forms.TextBox();
+            this.chkAdductNH4 = new System.Windows.Forms.CheckBox();
+            this.chkAdductNa = new System.Windows.Forms.CheckBox();
+            this.chkAdductK = new System.Windows.Forms.CheckBox();
+            this.chkAdductUser = new System.Windows.Forms.CheckBox();
+            this.txtAdductMass = new System.Windows.Forms.TextBox();
+            this.chkAdductProton = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtScanCount = new System.Windows.Forms.TextBox();
+            this.chkScanCount = new System.Windows.Forms.CheckBox();
+            this.txtAbundanceMin = new System.Windows.Forms.TextBox();
+            this.chkAbundance = new System.Windows.Forms.CheckBox();
+            this.chkLCMax = new System.Windows.Forms.CheckBox();
+            this.chkLCMin = new System.Windows.Forms.CheckBox();
+            this.txtMinLCTime = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eluctionProfileViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.massCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtGlycanPPM = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chkLog = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBrowseRaw
             // 
-            this.btnBrowseRaw.Location = new System.Drawing.Point(491, 14);
+            this.btnBrowseRaw.Location = new System.Drawing.Point(405, 12);
             this.btnBrowseRaw.Name = "btnBrowseRaw";
             this.btnBrowseRaw.Size = new System.Drawing.Size(25, 23);
             this.btnBrowseRaw.TabIndex = 1;
@@ -92,7 +112,7 @@
             // 
             this.txtRawFile.Location = new System.Drawing.Point(65, 14);
             this.txtRawFile.Name = "txtRawFile";
-            this.txtRawFile.Size = new System.Drawing.Size(420, 20);
+            this.txtRawFile.Size = new System.Drawing.Size(335, 20);
             this.txtRawFile.TabIndex = 0;
             // 
             // openFileDialog1
@@ -105,9 +125,9 @@
             this.groupBox1.Controls.Add(this.rdoDefaultList);
             this.groupBox1.Controls.Add(this.rdoUserList);
             this.groupBox1.Controls.Add(this.btnBrowseGlycan);
-            this.groupBox1.Location = new System.Drawing.Point(6, 89);
+            this.groupBox1.Location = new System.Drawing.Point(6, 104);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(522, 44);
+            this.groupBox1.Size = new System.Drawing.Size(438, 44);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Glycan List";
@@ -117,7 +137,7 @@
             this.txtGlycanList.Enabled = false;
             this.txtGlycanList.Location = new System.Drawing.Point(196, 16);
             this.txtGlycanList.Name = "txtGlycanList";
-            this.txtGlycanList.Size = new System.Drawing.Size(289, 20);
+            this.txtGlycanList.Size = new System.Drawing.Size(204, 20);
             this.txtGlycanList.TabIndex = 8;
             // 
             // rdoDefaultList
@@ -146,7 +166,7 @@
             // btnBrowseGlycan
             // 
             this.btnBrowseGlycan.Enabled = false;
-            this.btnBrowseGlycan.Location = new System.Drawing.Point(491, 16);
+            this.btnBrowseGlycan.Location = new System.Drawing.Point(406, 14);
             this.btnBrowseGlycan.Name = "btnBrowseGlycan";
             this.btnBrowseGlycan.Size = new System.Drawing.Size(25, 22);
             this.btnBrowseGlycan.TabIndex = 9;
@@ -157,7 +177,7 @@
             // btnMerge
             // 
             this.btnMerge.Enabled = false;
-            this.btnMerge.Location = new System.Drawing.Point(433, 192);
+            this.btnMerge.Location = new System.Drawing.Point(390, 344);
             this.btnMerge.Name = "btnMerge";
             this.btnMerge.Size = new System.Drawing.Size(53, 23);
             this.btnMerge.TabIndex = 14;
@@ -168,7 +188,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 142);
+            this.label1.Location = new System.Drawing.Point(15, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 5;
@@ -176,7 +196,7 @@
             // 
             // txtPPM
             // 
-            this.txtPPM.Location = new System.Drawing.Point(99, 138);
+            this.txtPPM.Location = new System.Drawing.Point(95, 16);
             this.txtPPM.Name = "txtPPM";
             this.txtPPM.Size = new System.Drawing.Size(21, 20);
             this.txtPPM.TabIndex = 10;
@@ -187,7 +207,7 @@
             this.chkPermethylated.AutoSize = true;
             this.chkPermethylated.Checked = true;
             this.chkPermethylated.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPermethylated.Location = new System.Drawing.Point(138, 194);
+            this.chkPermethylated.Location = new System.Drawing.Point(13, 44);
             this.chkPermethylated.Name = "chkPermethylated";
             this.chkPermethylated.Size = new System.Drawing.Size(93, 17);
             this.chkPermethylated.TabIndex = 13;
@@ -198,29 +218,12 @@
             this.chkReducedReducingEnd.AutoSize = true;
             this.chkReducedReducingEnd.Checked = true;
             this.chkReducedReducingEnd.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReducedReducingEnd.Location = new System.Drawing.Point(138, 140);
+            this.chkReducedReducingEnd.Location = new System.Drawing.Point(13, 19);
             this.chkReducedReducingEnd.Name = "chkReducedReducingEnd";
             this.chkReducedReducingEnd.Size = new System.Drawing.Size(141, 17);
             this.chkReducedReducingEnd.TabIndex = 12;
             this.chkReducedReducingEnd.Text = "Reduced Reducing End";
             this.chkReducedReducingEnd.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 169);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Glycan tol(PPM):";
-            // 
-            // txtGlycanPPM
-            // 
-            this.txtGlycanPPM.Location = new System.Drawing.Point(99, 165);
-            this.txtGlycanPPM.Name = "txtGlycanPPM";
-            this.txtGlycanPPM.Size = new System.Drawing.Size(21, 20);
-            this.txtGlycanPPM.TabIndex = 11;
-            this.txtGlycanPPM.Text = "10";
             // 
             // label3
             // 
@@ -292,28 +295,16 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.rdoAllRaw);
             this.groupBox2.Controls.Add(this.lblFile);
-            this.groupBox2.Location = new System.Drawing.Point(6, 12);
+            this.groupBox2.Location = new System.Drawing.Point(6, 27);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(522, 71);
+            this.groupBox2.Size = new System.Drawing.Size(438, 71);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Raw File";
             // 
-            // chkSingleCluster
-            // 
-            this.chkSingleCluster.AutoSize = true;
-            this.chkSingleCluster.Checked = true;
-            this.chkSingleCluster.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSingleCluster.Location = new System.Drawing.Point(138, 158);
-            this.chkSingleCluster.Name = "chkSingleCluster";
-            this.chkSingleCluster.Size = new System.Drawing.Size(132, 17);
-            this.chkSingleCluster.TabIndex = 18;
-            this.chkSingleCluster.Text = "Include native glycans";
-            this.chkSingleCluster.UseVisualStyleBackColor = true;
-            // 
             // btnSetting
             // 
-            this.btnSetting.Location = new System.Drawing.Point(375, 192);
+            this.btnSetting.Location = new System.Drawing.Point(390, 319);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Size = new System.Drawing.Size(54, 23);
             this.btnSetting.TabIndex = 19;
@@ -326,11 +317,11 @@
             this.chkMergeDffCharge.AutoSize = true;
             this.chkMergeDffCharge.Checked = true;
             this.chkMergeDffCharge.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkMergeDffCharge.Location = new System.Drawing.Point(138, 176);
+            this.chkMergeDffCharge.Location = new System.Drawing.Point(10, 19);
             this.chkMergeDffCharge.Name = "chkMergeDffCharge";
-            this.chkMergeDffCharge.Size = new System.Drawing.Size(136, 17);
+            this.chkMergeDffCharge.Size = new System.Drawing.Size(167, 17);
             this.chkMergeDffCharge.TabIndex = 20;
-            this.chkMergeDffCharge.Text = "Merge Different Charge";
+            this.chkMergeDffCharge.Text = "Merge different charge glycan";
             this.chkMergeDffCharge.UseVisualStyleBackColor = true;
             // 
             // cboCPU
@@ -352,19 +343,9 @@
             this.label7.Text = "No. of processor:";
             this.label7.Visible = false;
             // 
-            // btnView
-            // 
-            this.btnView.Location = new System.Drawing.Point(490, 192);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(40, 23);
-            this.btnView.TabIndex = 27;
-            this.btnView.Text = "View";
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
             // btnMergeTest
             // 
-            this.btnMergeTest.Location = new System.Drawing.Point(444, -3);
+            this.btnMergeTest.Location = new System.Drawing.Point(369, -4);
             this.btnMergeTest.Name = "btnMergeTest";
             this.btnMergeTest.Size = new System.Drawing.Size(75, 23);
             this.btnMergeTest.TabIndex = 28;
@@ -373,95 +354,310 @@
             this.btnMergeTest.Visible = false;
             this.btnMergeTest.Click += new System.EventHandler(this.btnMergeTest_Click);
             // 
-            // cboAdduct
-            // 
-            this.cboAdduct.FormattingEnabled = true;
-            this.cboAdduct.Location = new System.Drawing.Point(397, 136);
-            this.cboAdduct.Name = "cboAdduct";
-            this.cboAdduct.Size = new System.Drawing.Size(122, 21);
-            this.cboAdduct.TabIndex = 14;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(320, 141);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 13);
-            this.label8.TabIndex = 29;
-            this.label8.Text = "Adduct mass:";
-            // 
-            // txtOutputScanFilter
-            // 
-            this.txtOutputScanFilter.Location = new System.Drawing.Point(99, 192);
-            this.txtOutputScanFilter.Name = "txtOutputScanFilter";
-            this.txtOutputScanFilter.Size = new System.Drawing.Size(21, 20);
-            this.txtOutputScanFilter.TabIndex = 24;
-            this.txtOutputScanFilter.Text = "2";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 189);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 26);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "Output greater \r\nthan (scans):";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(320, 172);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(130, 13);
-            this.label9.TabIndex = 30;
-            this.label9.Text = "Max LC eluction time(min):";
-            // 
             // txtMaxLCTime
             // 
-            this.txtMaxLCTime.Location = new System.Drawing.Point(450, 169);
+            this.txtMaxLCTime.Location = new System.Drawing.Point(175, 67);
             this.txtMaxLCTime.Name = "txtMaxLCTime";
-            this.txtMaxLCTime.Size = new System.Drawing.Size(69, 20);
+            this.txtMaxLCTime.Size = new System.Drawing.Size(38, 20);
             this.txtMaxLCTime.TabIndex = 31;
             this.txtMaxLCTime.Text = "8";
+            // 
+            // chkAdductNH4
+            // 
+            this.chkAdductNH4.AutoSize = true;
+            this.chkAdductNH4.Location = new System.Drawing.Point(7, 40);
+            this.chkAdductNH4.Name = "chkAdductNH4";
+            this.chkAdductNH4.Size = new System.Drawing.Size(108, 17);
+            this.chkAdductNH4.TabIndex = 32;
+            this.chkAdductNH4.Text = "Ammonium (NH4)";
+            this.chkAdductNH4.UseVisualStyleBackColor = true;
+            // 
+            // chkAdductNa
+            // 
+            this.chkAdductNa.AutoSize = true;
+            this.chkAdductNa.Location = new System.Drawing.Point(7, 61);
+            this.chkAdductNa.Name = "chkAdductNa";
+            this.chkAdductNa.Size = new System.Drawing.Size(84, 17);
+            this.chkAdductNa.TabIndex = 33;
+            this.chkAdductNa.Text = "Sodium (Na)";
+            this.chkAdductNa.UseVisualStyleBackColor = true;
+            // 
+            // chkAdductK
+            // 
+            this.chkAdductK.AutoSize = true;
+            this.chkAdductK.Location = new System.Drawing.Point(7, 82);
+            this.chkAdductK.Name = "chkAdductK";
+            this.chkAdductK.Size = new System.Drawing.Size(90, 17);
+            this.chkAdductK.TabIndex = 34;
+            this.chkAdductK.Text = "Potassium (K)";
+            this.chkAdductK.UseVisualStyleBackColor = true;
+            // 
+            // chkAdductUser
+            // 
+            this.chkAdductUser.AutoSize = true;
+            this.chkAdductUser.Location = new System.Drawing.Point(7, 103);
+            this.chkAdductUser.Name = "chkAdductUser";
+            this.chkAdductUser.Size = new System.Drawing.Size(87, 17);
+            this.chkAdductUser.TabIndex = 35;
+            this.chkAdductUser.Text = "User adduct:";
+            this.chkAdductUser.UseVisualStyleBackColor = true;
+            this.chkAdductUser.CheckedChanged += new System.EventHandler(this.chkAdductUser_CheckedChanged);
+            // 
+            // txtAdductMass
+            // 
+            this.txtAdductMass.Enabled = false;
+            this.txtAdductMass.Location = new System.Drawing.Point(92, 100);
+            this.txtAdductMass.Name = "txtAdductMass";
+            this.txtAdductMass.Size = new System.Drawing.Size(38, 20);
+            this.txtAdductMass.TabIndex = 36;
+            // 
+            // chkAdductProton
+            // 
+            this.chkAdductProton.AutoSize = true;
+            this.chkAdductProton.Checked = true;
+            this.chkAdductProton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAdductProton.Enabled = false;
+            this.chkAdductProton.Location = new System.Drawing.Point(7, 19);
+            this.chkAdductProton.Name = "chkAdductProton";
+            this.chkAdductProton.Size = new System.Drawing.Size(74, 17);
+            this.chkAdductProton.TabIndex = 37;
+            this.chkAdductProton.Text = "Proton (H)";
+            this.chkAdductProton.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.groupBox4);
+            this.groupBox3.Controls.Add(this.chkReducedReducingEnd);
+            this.groupBox3.Controls.Add(this.chkPermethylated);
+            this.groupBox3.Location = new System.Drawing.Point(5, 155);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(164, 210);
+            this.groupBox3.TabIndex = 38;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Expriment";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.chkAdductProton);
+            this.groupBox4.Controls.Add(this.chkAdductNH4);
+            this.groupBox4.Controls.Add(this.chkAdductNa);
+            this.groupBox4.Controls.Add(this.chkAdductK);
+            this.groupBox4.Controls.Add(this.txtAdductMass);
+            this.groupBox4.Controls.Add(this.chkAdductUser);
+            this.groupBox4.Location = new System.Drawing.Point(12, 67);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(142, 129);
+            this.groupBox4.TabIndex = 39;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Adduct";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Controls.Add(this.txtPPM);
+            this.groupBox5.Location = new System.Drawing.Point(175, 319);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(124, 43);
+            this.groupBox5.TabIndex = 39;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Mass accurecy";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtScanCount);
+            this.groupBox6.Controls.Add(this.chkScanCount);
+            this.groupBox6.Controls.Add(this.txtAbundanceMin);
+            this.groupBox6.Controls.Add(this.chkAbundance);
+            this.groupBox6.Controls.Add(this.chkLCMax);
+            this.groupBox6.Controls.Add(this.chkLCMin);
+            this.groupBox6.Controls.Add(this.txtMinLCTime);
+            this.groupBox6.Controls.Add(this.chkMergeDffCharge);
+            this.groupBox6.Controls.Add(this.txtMaxLCTime);
+            this.groupBox6.Location = new System.Drawing.Point(175, 158);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(269, 155);
+            this.groupBox6.TabIndex = 40;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Filter and output";
+            // 
+            // txtScanCount
+            // 
+            this.txtScanCount.Location = new System.Drawing.Point(175, 117);
+            this.txtScanCount.Name = "txtScanCount";
+            this.txtScanCount.Size = new System.Drawing.Size(38, 20);
+            this.txtScanCount.TabIndex = 39;
+            this.txtScanCount.Text = "10";
+            // 
+            // chkScanCount
+            // 
+            this.chkScanCount.AutoSize = true;
+            this.chkScanCount.Checked = true;
+            this.chkScanCount.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkScanCount.Location = new System.Drawing.Point(10, 119);
+            this.chkScanCount.Name = "chkScanCount";
+            this.chkScanCount.Size = new System.Drawing.Size(143, 17);
+            this.chkScanCount.TabIndex = 38;
+            this.chkScanCount.Text = "Minimum number of scan";
+            this.chkScanCount.UseVisualStyleBackColor = true;
+            this.chkScanCount.CheckedChanged += new System.EventHandler(this.chkScanCount_CheckedChanged);
+            // 
+            // txtAbundanceMin
+            // 
+            this.txtAbundanceMin.Location = new System.Drawing.Point(140, 92);
+            this.txtAbundanceMin.Name = "txtAbundanceMin";
+            this.txtAbundanceMin.Size = new System.Drawing.Size(73, 20);
+            this.txtAbundanceMin.TabIndex = 37;
+            this.txtAbundanceMin.Text = "1000000";
+            // 
+            // chkAbundance
+            // 
+            this.chkAbundance.AutoSize = true;
+            this.chkAbundance.Checked = true;
+            this.chkAbundance.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAbundance.Location = new System.Drawing.Point(10, 94);
+            this.chkAbundance.Name = "chkAbundance";
+            this.chkAbundance.Size = new System.Drawing.Size(124, 17);
+            this.chkAbundance.TabIndex = 36;
+            this.chkAbundance.Text = "Minimum abundance";
+            this.chkAbundance.UseVisualStyleBackColor = true;
+            this.chkAbundance.CheckedChanged += new System.EventHandler(this.chkAbundance_CheckedChanged);
+            // 
+            // chkLCMax
+            // 
+            this.chkLCMax.AutoSize = true;
+            this.chkLCMax.Checked = true;
+            this.chkLCMax.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkLCMax.Location = new System.Drawing.Point(10, 69);
+            this.chkLCMax.Name = "chkLCMax";
+            this.chkLCMax.Size = new System.Drawing.Size(161, 17);
+            this.chkLCMax.TabIndex = 35;
+            this.chkLCMax.Text = "Glycan LC maximum (minute)";
+            this.chkLCMax.UseVisualStyleBackColor = true;
+            this.chkLCMax.CheckedChanged += new System.EventHandler(this.chkLCMax_CheckedChanged);
+            // 
+            // chkLCMin
+            // 
+            this.chkLCMin.AutoSize = true;
+            this.chkLCMin.Checked = true;
+            this.chkLCMin.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkLCMin.Location = new System.Drawing.Point(10, 44);
+            this.chkLCMin.Name = "chkLCMin";
+            this.chkLCMin.Size = new System.Drawing.Size(158, 17);
+            this.chkLCMin.TabIndex = 34;
+            this.chkLCMin.Text = "Glycan LC minimum (minute)";
+            this.chkLCMin.UseVisualStyleBackColor = true;
+            this.chkLCMin.CheckedChanged += new System.EventHandler(this.chkLCMin_CheckedChanged);
+            // 
+            // txtMinLCTime
+            // 
+            this.txtMinLCTime.Location = new System.Drawing.Point(175, 42);
+            this.txtMinLCTime.Name = "txtMinLCTime";
+            this.txtMinLCTime.Size = new System.Drawing.Size(38, 20);
+            this.txtMinLCTime.TabIndex = 32;
+            this.txtMinLCTime.Text = "0.15";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(450, 24);
+            this.menuStrip1.TabIndex = 41;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eluctionProfileViewerToolStripMenuItem,
+            this.massCalculatorToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // eluctionProfileViewerToolStripMenuItem
+            // 
+            this.eluctionProfileViewerToolStripMenuItem.Name = "eluctionProfileViewerToolStripMenuItem";
+            this.eluctionProfileViewerToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.eluctionProfileViewerToolStripMenuItem.Text = "Eluction profile viewer";
+            this.eluctionProfileViewerToolStripMenuItem.Click += new System.EventHandler(this.eluctionProfileViewerToolStripMenuItem_Click);
+            // 
+            // massCalculatorToolStripMenuItem
+            // 
+            this.massCalculatorToolStripMenuItem.Name = "massCalculatorToolStripMenuItem";
+            this.massCalculatorToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.massCalculatorToolStripMenuItem.Text = "Mass Calculator";
+            this.massCalculatorToolStripMenuItem.Click += new System.EventHandler(this.massCalculatorToolStripMenuItem_Click);
+            // 
+            // txtGlycanPPM
+            // 
+            this.txtGlycanPPM.Location = new System.Drawing.Point(170, 0);
+            this.txtGlycanPPM.Name = "txtGlycanPPM";
+            this.txtGlycanPPM.Size = new System.Drawing.Size(21, 20);
+            this.txtGlycanPPM.TabIndex = 11;
+            this.txtGlycanPPM.Text = "10";
+            this.txtGlycanPPM.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(83, 4);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Glycan tol(PPM):";
+            this.label2.Visible = false;
+            // 
+            // chkLog
+            // 
+            this.chkLog.AutoSize = true;
+            this.chkLog.Location = new System.Drawing.Point(308, 334);
+            this.chkLog.Name = "chkLog";
+            this.chkLog.Size = new System.Drawing.Size(44, 17);
+            this.chkLog.TabIndex = 40;
+            this.chkLog.Text = "Log";
+            this.chkLog.UseVisualStyleBackColor = true;
             // 
             // frmMainESI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(531, 217);
-            this.Controls.Add(this.txtMaxLCTime);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.cboAdduct);
+            this.ClientSize = new System.Drawing.Size(450, 375);
+            this.Controls.Add(this.chkLog);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtGlycanPPM);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnMergeTest);
-            this.Controls.Add(this.btnView);
             this.Controls.Add(this.cboCPU);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtOutputScanFilter);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.chkMergeDffCharge);
             this.Controls.Add(this.btnSetting);
-            this.Controls.Add(this.chkSingleCluster);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.txtGlycanPPM);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.chkReducedReducingEnd);
-            this.Controls.Add(this.chkPermethylated);
-            this.Controls.Add(this.txtPPM);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnMerge);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMainESI";
-            this.Text = "MultiNglycan-ESI v0.9.1";
+            this.Text = "MultiNglycan-ESI v0.9.2.2";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,8 +680,6 @@
         private System.Windows.Forms.TextBox txtPPM;
         private System.Windows.Forms.CheckBox chkPermethylated;
         private System.Windows.Forms.CheckBox chkReducedReducingEnd;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtGlycanPPM;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtStartScan;
         private System.Windows.Forms.Label label4;
@@ -493,18 +687,35 @@
         private System.Windows.Forms.RadioButton rdoAllRaw;
         private System.Windows.Forms.RadioButton rdoScanNum;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox chkSingleCluster;
         private System.Windows.Forms.Button btnSetting;
         private System.Windows.Forms.CheckBox chkMergeDffCharge;
         private System.Windows.Forms.ComboBox cboCPU;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Button btnMergeTest;
-        private System.Windows.Forms.ComboBox cboAdduct;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtOutputScanFilter;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtMaxLCTime;
+        private System.Windows.Forms.CheckBox chkAdductNH4;
+        private System.Windows.Forms.CheckBox chkAdductNa;
+        private System.Windows.Forms.CheckBox chkAdductK;
+        private System.Windows.Forms.CheckBox chkAdductUser;
+        private System.Windows.Forms.TextBox txtAdductMass;
+        private System.Windows.Forms.CheckBox chkAdductProton;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtMinLCTime;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eluctionProfileViewerToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtGlycanPPM;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtAbundanceMin;
+        private System.Windows.Forms.CheckBox chkAbundance;
+        private System.Windows.Forms.CheckBox chkLCMax;
+        private System.Windows.Forms.CheckBox chkLCMin;
+        private System.Windows.Forms.TextBox txtScanCount;
+        private System.Windows.Forms.CheckBox chkScanCount;
+        private System.Windows.Forms.ToolStripMenuItem massCalculatorToolStripMenuItem;
+        private System.Windows.Forms.CheckBox chkLog;
     }
 }

@@ -6,13 +6,14 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-namespace COL.MultiNGlycan
+namespace COL.MultiGlycan
 {
     public partial class frmMainESI : Form
     {
         GlypID.Peaks.clsPeakProcessorParameters _peakParameter;
         GlypID.HornTransform.clsHornTransformParameters _transformParameters;
         frmPeakParameters frmPeakpara;
+        bool DoLog = false;
         private int _endScan = 0;
 
         public frmMainESI()
@@ -23,28 +24,7 @@ namespace COL.MultiNGlycan
             //{
             //    cboCPU.Items.Add(i); 
             //}
-            //cboCPU.SelectedIndex = (int)Math.Floor(cboCPU.Items.Count / 2.0f)-1;
-            float NH4 = MassLib.Atoms.NitrogenMass + 4 * MassLib.Atoms.HydrogenMass;
-            float K = MassLib.Atoms.Potassium;
-            float Na = MassLib.Atoms.SodiumMass;
-            DataTable list = new DataTable();
-            list.Columns.Add(new DataColumn("Display", typeof(string)));
-            list.Columns.Add(new DataColumn("Id", typeof(float)));
-            list.Rows.Add(list.NewRow());
-            list.Rows.Add(list.NewRow());
-            list.Rows.Add(list.NewRow());
-            list.Rows[0][0] = "Ammonium (NH4)";
-            list.Rows[0][1] = NH4;
-            list.Rows[1][0] = "Potassium (K)";
-            list.Rows[1][1] = K;
-            list.Rows[2][0] = "Sodium (Na)";
-            list.Rows[2][1] = Na;
-            cboAdduct.DataSource = list;
-            cboAdduct.DisplayMember = "Display";
-            cboAdduct.ValueMember = "Id";  
-
-
-            cboAdduct.SelectedIndex = 0;
+            //cboCPU.SelectedIndex = (int)Math.Floor(cboCPU.Items.Count / 2.0f)-1;   
         }
 
 
@@ -66,7 +46,6 @@ namespace COL.MultiNGlycan
                     COL.MassLib.mzXMLReader raw = new COL.MassLib.mzXMLReader(txtRawFile.Text);
                     _endScan = raw.NumberOfScans;
                 }
-
                 txtEndScan.Text = _endScan.ToString();
             }
         }
@@ -74,31 +53,31 @@ namespace COL.MultiNGlycan
         private void rdoDefaultList_CheckedChanged(object sender, EventArgs e)
         {
             rdoUserList.Checked = !rdoDefaultList.Checked;
-
             txtGlycanList.Enabled = !rdoDefaultList.Checked;
-            btnBrowseGlycan.Enabled = !rdoDefaultList.Checked;
-            
+            btnBrowseGlycan.Enabled = !rdoDefaultList.Checked;            
         }
 
         private void btnMerge_Click(object sender, EventArgs e)
         {
-            //FileInfo rawInfo = new FileInfo(txtRawFile.Text);
-            //DriveInfo dInfo = new DriveInfo(Directory.GetDirectoryRoot(txtRawFile.Text));
-            //if (dInfo.TotalFreeSpace <= rawInfo.Length * (int)cboCPU.SelectedItem)
-            //{
-            //    MessageBox.Show("Not enough free space to duplicate Raw file.");
-            //    return;
-            //}
-
-
+            DoLog = chkLog.Checked;
             saveFileDialog1.Filter = "CSV Files (*.csv)|*.csv";
             DateTime time = DateTime.Now;             // Use current time
             string TimeFormat = "yyMMdd HHmm";            // Use this format
+
+            if (DoLog)
+            {
+                Logger.WriteLog(System.Environment.NewLine + System.Environment.NewLine + "-----------------------------------------------------------" );
+                Logger.WriteLog("Start Process");
+            }
 
             saveFileDialog1.FileName = Path.GetFileNameWithoutExtension(txtRawFile.Text) + "-" + time.ToString(TimeFormat) + ".csv";
             if (txtRawFile.Text == "" || (rdoUserList.Checked && txtGlycanList.Text == "") || txtMaxLCTime.Text =="")
             {
                 MessageBox.Show("Please check input values.");
+                if (DoLog)
+                {
+                   Logger.WriteLog("End Process- because input value not complete");
+                }
                 return ;
             }
 
@@ -107,33 +86,90 @@ namespace COL.MultiNGlycan
 
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
+
                     string glycanlist = System.Windows.Forms.Application.StartupPath + "\\Default_Combination.csv";
                     if (!rdoDefaultList.Checked)
                     {
                         glycanlist = txtGlycanList.Text;
                     }
 
+                    if (DoLog)
+                    {
+
+                       Logger.WriteLog("Start initial program");
+
+                    }
                    // MultiNGlycanESIMultiThreads MultiESIs = new MultiNGlycanESIMultiThreads(glycanlist, txtRawFile.Text, Convert.ToInt32(cboCPU.SelectedItem), _peakParameter, _transformParameters);
 
-                    MultiNGlycanESI ESI = new MultiNGlycanESI(txtRawFile.Text, Convert.ToInt32(txtStartScan.Text), Convert.ToInt32(txtEndScan.Text), glycanlist, Convert.ToDouble(txtPPM.Text), Convert.ToDouble(txtGlycanPPM.Text), Convert.ToDouble(txtMaxLCTime.Text), chkPermethylated.Checked, chkReducedReducingEnd.Checked);
-                    ESI.IncludeNonClusterGlycan = chkSingleCluster.Checked;
+                    MultiGlycanESI ESI = new MultiGlycanESI(txtRawFile.Text, Convert.ToInt32(txtStartScan.Text), Convert.ToInt32(txtEndScan.Text), glycanlist, Convert.ToDouble(txtPPM.Text), Convert.ToDouble(txtGlycanPPM.Text), Convert.ToDouble(txtMaxLCTime.Text), chkPermethylated.Checked, chkReducedReducingEnd.Checked,DoLog);
                     ESI.MergeDifferentChargeIntoOne = chkMergeDffCharge.Checked;
                     ESI.PeakProcessorParameters = _peakParameter;
                     ESI.TransformParameters = _transformParameters;
                     ESI.ExportFilePath = saveFileDialog1.FileName;
-
-                    float AdductMass=0.0f;
-                    if (cboAdduct.SelectedIndex < 3 && cboAdduct.SelectedIndex>=0)
+                    if (chkLCMax.Checked)
                     {
-                        AdductMass = Convert.ToSingle(((DataRowView)cboAdduct.Items[cboAdduct.SelectedIndex])[1]);
+                        ESI.MaxLCMin = Convert.ToSingle(txtMaxLCTime.Text);
                     }
                     else
                     {
-                        AdductMass = Convert.ToSingle(cboAdduct.Text);
+                        ESI.MaxLCMin = 9999;
                     }
-                    ESI.AdductMass = AdductMass;
-                    frmProcessing frmProcess = new frmProcessing(ESI, Convert.ToInt32(txtOutputScanFilter.Text));
+                    if (chkLCMin.Checked)
+                    {
+                        ESI.MinLCMin = Convert.ToSingle(txtMinLCTime.Text);
+                    }
+                    else
+                    {
+                        ESI.MinLCMin = 0;
+                    }
+                    if (chkAbundance.Checked)
+                    {
+                        ESI.MinAbundance = Convert.ToDouble(txtAbundanceMin.Text);
+                    }
+                    else
+                    {
+                        ESI.MinAbundance = 0;
+                    }
+                    List<float> AdductMasses = new List<float>();
+                    if (chkAdductK.Checked)
+                    {
+                        AdductMasses.Add(MassLib.Atoms.Potassium);
+                    }
+                    if (chkAdductNH4.Checked)
+                    {
+                        AdductMasses.Add(MassLib.Atoms.NitrogenMass + 4 * MassLib.Atoms.HydrogenMass);
+                    }
+                    if (chkAdductNa.Checked)
+                    {
+                        AdductMasses.Add(MassLib.Atoms.SodiumMass);
+                    }
+                    if (chkAdductProton.Checked)
+                    {
+                        AdductMasses.Add(MassLib.Atoms.ProtonMass);
+                    }
+                    float outMass = 0.0f;
+                    if (chkAdductUser.Checked && float.TryParse(txtAdductMass.Text,out outMass))
+                    {
+                        AdductMasses.Add(outMass);
+                    }
+                    if (chkScanCount.Checked)
+                    {
+                        ESI.MinScanCount = Convert.ToInt32(txtScanCount.Text);
+                    }
+                    ESI.AdductMass = AdductMasses;
+
+                    if (DoLog)
+                    {
+                       Logger.WriteLog("Initial program complete");
+                    }
+
+                    frmProcessing frmProcess = new frmProcessing(ESI, DoLog);
                     frmProcess.ShowDialog();
+
+                    if (DoLog)
+                    {
+                       Logger.WriteLog("Finish process");
+                    }
                 }            
         }
 
@@ -163,11 +199,6 @@ namespace COL.MultiNGlycan
             btnMerge.Enabled = true;
         }
 
-        private void btnView_Click(object sender, EventArgs e)
-        {
-            frmView frView = new frmView();
-            frView.ShowDialog();
-        }
 
         private void btnMergeTest_Click(object sender, EventArgs e)
         {
@@ -184,7 +215,7 @@ namespace COL.MultiNGlycan
                 
                 tnpCluPeak.EndScan = Convert.ToInt32(tmpArray[1]);
                 tnpCluPeak.Intensity = Convert.ToSingle(tmpArray[2]);
-                tnpCluPeak.GlycanCompostion = new COL.GlycoLib.GlycanCompound(
+                tnpCluPeak.GlycanComposition = new COL.GlycoLib.GlycanCompound(
                                                                                 Convert.ToInt32(tmpArray[8]),
                                                                                 Convert.ToInt32(tmpArray[9]),
                                                                                 Convert.ToInt32(tmpArray[10]),
@@ -196,6 +227,45 @@ namespace COL.MultiNGlycan
             sr.Close();
             //MultiNGlycanESI.MergeCluster(clu, 8.0);
         }
+
+        private void chkAdductUser_CheckedChanged(object sender, EventArgs e)
+        {
+            txtAdductMass.Enabled = chkAdductUser.Checked;
+        }
+
+        private void eluctionProfileViewerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmView frView = new frmView();
+            frView.ShowDialog();
+        }
+
+        private void chkLCMin_CheckedChanged(object sender, EventArgs e)
+        {
+            txtMinLCTime.Enabled = chkLCMin.Checked;
+        }
+
+        private void chkLCMax_CheckedChanged(object sender, EventArgs e)
+        {
+            txtMaxLCTime.Enabled = chkLCMax.Checked;
+        }
+
+        private void chkAbundance_CheckedChanged(object sender, EventArgs e)
+        {
+            txtAbundanceMin.Enabled = chkAbundance.Checked;
+        }
+
+        private void chkScanCount_CheckedChanged(object sender, EventArgs e)
+        {
+            txtScanCount.Enabled = chkScanCount.Checked;
+        }
+
+        private void massCalculatorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCalculator frmCalc = new frmCalculator();
+            frmCalc.Show();
+        }
+
+
  
     }
 }

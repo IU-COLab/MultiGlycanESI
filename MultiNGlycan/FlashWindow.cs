@@ -4,7 +4,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 //C#: Flash Window in Taskbar via Win32 FlashWindowEx
 //http://pietschsoft.com/post/2009/01/26/CSharp-Flash-Window-in-Taskbar-via-Win32-FlashWindowEx.aspx
-namespace COL.MultiNGlycan
+namespace COL.MultiGlycan
 {
     /// <summary>
     /// C#: Flash Window in Taskbar via Win32 FlashWindowEx

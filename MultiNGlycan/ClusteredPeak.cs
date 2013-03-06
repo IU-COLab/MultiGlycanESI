@@ -5,7 +5,7 @@ using COL.MassLib;
 using COL.GlycoLib;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-namespace COL.MultiNGlycan
+namespace COL.MultiGlycan
 {
     [Serializable]
     public class ClusteredPeak : ICloneable
@@ -26,6 +26,7 @@ namespace COL.MultiNGlycan
             _EndScan = argScanNum;
             _MSPeak = new List<MSPeak>();
         }
+
         public float Intensity
         {
             get
@@ -88,8 +89,17 @@ namespace COL.MultiNGlycan
             get { return _EndScan; }
             set { _EndScan = value; }
         }
-
-        public GlycanCompound GlycanCompostion
+        public string GlycanKey
+        {
+            get
+            {
+                return _glycanComposition.NoOfHexNAc.ToString() + "-" +
+                              _glycanComposition.NoOfHex.ToString() + "-" +
+                              _glycanComposition.NoOfDeHex.ToString() + "-" +
+                              _glycanComposition.NoOfSia.ToString();
+            }
+        }
+        public GlycanCompound GlycanComposition
         {
             get { return _glycanComposition; }
             set { _glycanComposition = value; }
@@ -100,12 +110,42 @@ namespace COL.MultiNGlycan
             ClusPeaksClone.Charge = this.Charge;
             ClusPeaksClone.EndScan = this.EndScan;
             ClusPeaksClone.EndTime = this.EndTime;
-            ClusPeaksClone.GlycanCompostion = this.GlycanCompostion;
+            ClusPeaksClone.GlycanComposition = this.GlycanComposition;
             ClusPeaksClone.Intensity = this.Intensity;
             ClusPeaksClone.MergedIntensity = this.MergedIntensity;
             ClusPeaksClone.Peaks = this.Peaks;
             ClusPeaksClone.StartTime = this.StartTime;
             return ClusPeaksClone;
+        }
+        public override bool Equals(object obj)
+        {
+            //obj is null 
+            if (obj == null)
+            {
+                return false;
+            }
+
+            //check if we have a customer 
+            if (obj is ClusteredPeak)
+            {
+                ClusteredPeak ClsPaek = obj as ClusteredPeak;
+
+                if( ClsPaek._charge == this._charge &&
+                     ClsPaek._EndScan == this._EndScan &&
+                    ClsPaek._EndTime == this._EndTime &&
+                    ClsPaek._glycanComposition == this._glycanComposition &&
+                    ClsPaek._Intensity == this._Intensity &&
+                    ClsPaek._MergedIntensity == this._MergedIntensity &&
+                    //ClsPaek._MSPeak == this._MSPeak &&
+                    ClsPaek._StartScan == this._StartScan &&
+                    ClsPaek._StatrTime == this._StatrTime )
+                {
+                    return true;
+                }
+
+                
+            }
+            return false; 
         }
     }
 }

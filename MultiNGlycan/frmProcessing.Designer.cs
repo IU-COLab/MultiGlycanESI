@@ -1,4 +1,4 @@
-﻿namespace COL.MultiNGlycan
+﻿namespace COL.MultiGlycan
 {
     partial class frmProcessing
     {

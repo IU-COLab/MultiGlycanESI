@@ -1,4 +1,4 @@
-﻿namespace COL.MultiNGlycan
+﻿namespace COL.MultiGlycan
 {
     partial class frmPeakParameters
     {
@@ -60,7 +60,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Single to noise ratio";
+            this.label1.Text = "Signal to noise ratio";
             // 
             // label2
             // 

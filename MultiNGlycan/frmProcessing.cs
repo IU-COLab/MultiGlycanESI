@@ -5,20 +5,26 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
-namespace COL.MultiNGlycan
+using System.IO;
+namespace COL.MultiGlycan
 {
     public partial class frmProcessing : Form
     {
-        private MultiNGlycanESI _MultiNGlycan;
+        private MultiGlycanESI _MultiNGlycan;
         List<int> LstScanNumber;
         private int CurrentScan=0;
         DateTime Start;
-        int _GlycanScanFilter;
-        public frmProcessing(MultiNGlycanESI argMultiNGlycan, int argExportScanFilter )
+  
+        bool DoLog = false;
+   
+
+        public frmProcessing(MultiGlycanESI argMultiNGlycan, bool argLog )
         {
             InitializeComponent();
+            DoLog = argLog;
+
             _MultiNGlycan = argMultiNGlycan;
+            _MultiNGlycan.MaxGlycanCharge = _MultiNGlycan.TransformParameters.MaxCharge;
             int StartScan = argMultiNGlycan.StartScan;
             int EndScan = argMultiNGlycan.EndScan;
             LstScanNumber = new List<int>();
@@ -27,7 +33,10 @@ namespace COL.MultiNGlycan
                 LstScanNumber.Add(i);
             }
             Start = DateTime.Now;
-            _GlycanScanFilter = argExportScanFilter;
+            if (DoLog)
+            {
+                Logger.WriteLog("Start process each scan");
+            }
             bgWorker_Process.RunWorkerAsync();
         }
         //public frmProcessing(MultiNGlycanESIMultiThreads argMultiNGlycan, int argExportScanFilter)
@@ -49,9 +58,16 @@ namespace COL.MultiNGlycan
         {            
             for(int i=0;i<LstScanNumber.Count;i++)
             {
+                if (i == 772)
+                {
+                }
                   _MultiNGlycan.ProcessSingleScan(LstScanNumber[i]);
                 CurrentScan = i;
                 bgWorker_Process.ReportProgress(Convert.ToInt32((i / (float)LstScanNumber.Count)*100));
+                if (DoLog)
+                {
+                    Logger.WriteLog("Finish scan:" + LstScanNumber[i].ToString());
+                }
             }            
         }
 
@@ -66,10 +82,26 @@ namespace COL.MultiNGlycan
 
         private void bgWorker_Process_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (DoLog)
+            {
+                Logger.WriteLog("Start merge peaks");
+            }
             lblStatus.Text = "Mergeing Peaks";
             _MultiNGlycan.MergeCluster();
+            if (DoLog)
+            {
+                Logger.WriteLog("End merge peaks");
+            }
+            if (DoLog)
+            {
+                Logger.WriteLog("Start export");
+            }
             lblStatus.Text = "Exporting";
-            _MultiNGlycan.Export(true, _GlycanScanFilter);
+            _MultiNGlycan.Export();
+            if (DoLog)
+            {
+                Logger.WriteLog("End export");
+            }
             TimeSpan TDiff = DateTime.Now.Subtract(Start);
             lblStatus.Text = "Finish in " + TDiff.TotalMinutes.ToString("0.00") + " mins";
             lblNumberOfMerge.Text = _MultiNGlycan.MergedPeak.Count.ToString();
@@ -77,8 +109,10 @@ namespace COL.MultiNGlycan
             lblPercentage.Text =  "100%";
             FlashWindow.Flash(this);
             this.Text = "Done";
-
-            MessageBox.Show("Done");
+            if (DoLog)
+            {
+                Logger.WriteLog("End process each scan");
+            }
         }
 
         private void frmProcessing_FormClosing(object sender, FormClosingEventArgs e)
@@ -88,6 +122,10 @@ namespace COL.MultiNGlycan
                 if (MessageBox.Show("Still processing, do you want to quit?", "Exit process?", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     bgWorker_Process.CancelAsync();
+                    if (DoLog)
+                    {
+                        Logger.WriteLog("User terminate process");
+                    }
                 }
                 else
                 {

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiNGlycan_COLLib", "MultiNGlycan\MultiNGlycan_COLLib.csproj", "{A73C69E3-C47C-41DE-9AFE-477A67037116}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiGlycan_COLLib", "MultiNGlycan\MultiGlycan_COLLib.csproj", "{A73C69E3-C47C-41DE-9AFE-477A67037116}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MultiNGlycan_Setup", "MultiNGlycan_Setup\MultiNGlycan_Setup.vdproj", "{DBF0EB8F-57E5-4FF8-A2D2-2312BF368820}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MultiGlycan_Setup", "MultiNGlycan_Setup\MultiNGlycan_Setup.vdproj", "{DBF0EB8F-57E5-4FF8-A2D2-2312BF368820}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
