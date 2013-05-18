@@ -58,9 +58,6 @@ namespace COL.MultiGlycan
         {            
             for(int i=0;i<LstScanNumber.Count;i++)
             {
-                if (i == 772)
-                {
-                }
                   _MultiNGlycan.ProcessSingleScan(LstScanNumber[i]);
                 CurrentScan = i;
                 bgWorker_Process.ReportProgress(Convert.ToInt32((i / (float)LstScanNumber.Count)*100));
@@ -82,36 +79,47 @@ namespace COL.MultiGlycan
 
         private void bgWorker_Process_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (DoLog)
+            try
             {
-                Logger.WriteLog("Start merge peaks");
+                if (DoLog)
+                {
+                    Logger.WriteLog("Start merge peaks");
+                }
+                lblStatus.Text = "Mergeing Peaks";
+                _MultiNGlycan.MergeCluster();
+                if (DoLog)
+                {
+                    Logger.WriteLog("End merge peaks");
+                }
+                if (_MultiNGlycan.GlycanLCorderExist)
+                {
+                    _MultiNGlycan.ApplyLCordrer();
+                }
+                if (DoLog)
+                {
+                    Logger.WriteLog("Start export");
+                }
+                lblStatus.Text = "Exporting";
+                _MultiNGlycan.Export();
+                if (DoLog)
+                {
+                    Logger.WriteLog("End export");
+                }
+                TimeSpan TDiff = DateTime.Now.Subtract(Start);
+                lblStatus.Text = "Finish in " + TDiff.TotalMinutes.ToString("0.00") + " mins";
+                lblNumberOfMerge.Text = _MultiNGlycan.MergedPeak.Count.ToString();
+                progressBar1.Value = 100;
+                lblPercentage.Text = "100%";
+                FlashWindow.Flash(this);
+                this.Text = "Done";
+                if (DoLog)
+                {
+                    Logger.WriteLog("End process each scan");
+                }
             }
-            lblStatus.Text = "Mergeing Peaks";
-            _MultiNGlycan.MergeCluster();
-            if (DoLog)
+            catch (Exception ex)
             {
-                Logger.WriteLog("End merge peaks");
-            }
-            if (DoLog)
-            {
-                Logger.WriteLog("Start export");
-            }
-            lblStatus.Text = "Exporting";
-            _MultiNGlycan.Export();
-            if (DoLog)
-            {
-                Logger.WriteLog("End export");
-            }
-            TimeSpan TDiff = DateTime.Now.Subtract(Start);
-            lblStatus.Text = "Finish in " + TDiff.TotalMinutes.ToString("0.00") + " mins";
-            lblNumberOfMerge.Text = _MultiNGlycan.MergedPeak.Count.ToString();
-            progressBar1.Value = 100;
-            lblPercentage.Text =  "100%";
-            FlashWindow.Flash(this);
-            this.Text = "Done";
-            if (DoLog)
-            {
-                Logger.WriteLog("End process each scan");
+                throw ex;
             }
         }
 

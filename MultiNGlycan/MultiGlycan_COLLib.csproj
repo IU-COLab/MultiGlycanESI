@@ -74,6 +74,9 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ElutionViewer">
+      <HintPath>..\..\!IncludeFiles\ElutionViewer.dll</HintPath>
+    </Reference>
     <Reference Include="GlycoLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\!IncludeFiles\GlycoLib.dll</HintPath>

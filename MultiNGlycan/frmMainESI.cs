@@ -130,34 +130,45 @@ namespace COL.MultiGlycan
                     {
                         ESI.MinAbundance = 0;
                     }
+                    if (chkScanCount.Checked)
+                    {
+                        ESI.MinScanCount = Convert.ToInt32(txtScanCount.Text);
+                    }
+                    else
+                    {
+                        ESI.MinScanCount = 0;
+                    }
                     List<float> AdductMasses = new List<float>();
+                    Dictionary<float, string> AdductLabel = new Dictionary<float, string>();
                     if (chkAdductK.Checked)
                     {
                         AdductMasses.Add(MassLib.Atoms.Potassium);
+                        AdductLabel.Add(MassLib.Atoms.Potassium, "K");
                     }
                     if (chkAdductNH4.Checked)
                     {
                         AdductMasses.Add(MassLib.Atoms.NitrogenMass + 4 * MassLib.Atoms.HydrogenMass);
+                        AdductLabel.Add(MassLib.Atoms.NitrogenMass + 4 * MassLib.Atoms.HydrogenMass, "NH4");
                     }
                     if (chkAdductNa.Checked)
                     {
                         AdductMasses.Add(MassLib.Atoms.SodiumMass);
+                        AdductLabel.Add(MassLib.Atoms.SodiumMass,"Na");
                     }
                     if (chkAdductProton.Checked)
                     {
                         AdductMasses.Add(MassLib.Atoms.ProtonMass);
+                        AdductLabel.Add(MassLib.Atoms.ProtonMass,"H");
                     }
                     float outMass = 0.0f;
                     if (chkAdductUser.Checked && float.TryParse(txtAdductMass.Text,out outMass))
                     {
                         AdductMasses.Add(outMass);
+                        AdductLabel.Add(outMass,"User");
                     }
-                    if (chkScanCount.Checked)
-                    {
-                        ESI.MinScanCount = Convert.ToInt32(txtScanCount.Text);
-                    }
-                    ESI.AdductMass = AdductMasses;
 
+                    ESI.AdductMass = AdductMasses;
+                    ESI.AdductMassToLabel = AdductLabel;
                     if (DoLog)
                     {
                        Logger.WriteLog("Initial program complete");

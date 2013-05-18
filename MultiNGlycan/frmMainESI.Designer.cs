@@ -434,7 +434,7 @@
             this.groupBox3.Size = new System.Drawing.Size(164, 210);
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Expriment";
+            this.groupBox3.Text = "Experiment";
             // 
             // groupBox4
             // 
@@ -643,7 +643,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMainESI";
-            this.Text = "MultiNglycan-ESI v0.9.2.2";
+            this.Text = "MultiNglycan-ESI v0.9.4";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

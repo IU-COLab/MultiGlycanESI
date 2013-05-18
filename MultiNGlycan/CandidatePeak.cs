@@ -15,16 +15,25 @@ namespace COL.MultiGlycan
         private float _adductMass;
         private int _adductNo;
         private GlycoLib.GlycanCompound _glycanComposition;
-        public CandidatePeak(GlycoLib.GlycanCompound argCompound, int argCharge, float argAdductMass, int argAdductNo)
+        private string _adductLabel;
+        public CandidatePeak(GlycoLib.GlycanCompound argCompound, int argCharge, float argAdductMass, int argAdductNo, string argAdductLabel)
         {
             _glycanComposition = argCompound;
             _charge = argCharge;
             _adductMass = argAdductMass;
             _adductNo = argAdductNo;
+            _adductLabel = argAdductLabel;
         }
+        /// <summary>
+        /// How many adducts in this candidate?
+        /// </summary>
         public int AdductNo
         {
             get { return _adductNo; }
+        }
+        public string AdductLabel
+        {
+            get { return _adductLabel; }
         }
         public int Charge
         {

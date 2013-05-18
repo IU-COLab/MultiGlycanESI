@@ -19,6 +19,7 @@ namespace COL.MultiGlycan
         private GlycanCompound _glycanComposition;
         private float  _Intensity;
         private float _MergedIntensity;
+        private string _adduct;
         public ClusteredPeak(int argScanNum)
         {
             _StartScan = argScanNum;
@@ -26,7 +27,11 @@ namespace COL.MultiGlycan
             _EndScan = argScanNum;
             _MSPeak = new List<MSPeak>();
         }
-
+        public string Adduct
+        {
+            get { return _adduct; }
+            set { _adduct = value; }
+        }
         public float Intensity
         {
             get
@@ -146,6 +151,10 @@ namespace COL.MultiGlycan
                 
             }
             return false; 
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
